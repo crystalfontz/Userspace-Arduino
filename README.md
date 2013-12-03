@@ -10,3 +10,10 @@
 * WIP
 
 -------------------------------------------------------------------------------
+### To Do
+
+1. Setup pin mapping
+2. Make [sample code](https://github.com/sparkfun/DangerShield) work with Danger Shield
+3. Example codes and documentation
+4. Packaging
+
