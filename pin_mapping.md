@@ -25,3 +25,9 @@ This table consists of all the pin mappings between the IMX283/7 and Arduino Uno
 |A3|Analog In | | | | | |
 |A4|Analog In | | | | | |
 |A5|Analog In | | | | | |
+|RESET|| | | | | |
+|3.3V|| | | | | |
+|5V|| | | | | |
+|GND|| | | | | |
+|GND|| | | | | |
+|Vin|| | | | | |
