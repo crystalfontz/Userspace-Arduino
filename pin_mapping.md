@@ -17,8 +17,8 @@ This table consists of all the pin mappings between the IMX283/7 and Arduino Uno
 |9|PWM |GPIO | | | | |
 |10|PWM |GPIO | | | | |
 |11|PWM |GPIO | | | | |
-|12| | |GPIO | | | |
-|13| | |GPIO | | | |
+|12| |GPIO | | | | |
+|13| |GPIO | | | | |
 |A0|Analog In | | | | | |
 |A1|Analog In | | | | | |
 |A2|Analog In | | | | | |
