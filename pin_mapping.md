@@ -3,7 +3,7 @@ This table consists of all the pin mappings between the IMX283/7 and Arduino Uno
 
 -------------------------------------------------------------------------------
 
-| Arduino Pin Header | Arduino Function 1 | Arduino Function 2 | IMX283 Pin Number | IMX283 Header pin |  IMX283 Pin Number | IMX283 Header pin|
+| Arduino 1.0 Pinout | Arduino Function 1 | Arduino Function 2 | IMX283 Pin Number | IMX283 Header pin |  IMX283 Pin Number | IMX283 Header pin|
 | -------------------|:------:|:------:|:------:|:------:|:------:|------:|
 |0|RX |GPIO | | | | |
 |1|TX |GPIO | | | | |
