@@ -683,14 +683,14 @@ CORE_LIB   = $(OBJDIR)/libcore.a
 
 ifdef USERSPACE_MAKE
 
-CC      = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-gcc
-CXX     = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-g++
-AS      = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-as
-OBJCOPY = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-objcopy
-OBJDUMP = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-objdump
-AR      = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-ar
-SIZE    = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-size
-NM      = $(ARM_TOOLS)/arm-angstrom-linux-gnueabi-nm
+CC      = $(ARM_TOOLS)/arm-none-linux-gnueabi-gcc
+CXX     = $(ARM_TOOLS)/arm-none-gnueabi-g++
+AS      = $(ARM_TOOLS)/arm-none-linux-gnueabi-as
+OBJCOPY = $(ARM_TOOLS)/arm-none-linux-gnueabi-objcopy
+OBJDUMP = $(ARM_TOOLS)/arm-none-linux-gnueabi-objdump
+AR      = $(ARM_TOOLS)/arm-none-linux-gnueabi-ar
+SIZE    = $(ARM_TOOLS)/arm-none-linux-gnueabi-size
+NM      = $(ARM_TOOLS)/arm-none-linux-gnueabi-nm
 
 else
 
