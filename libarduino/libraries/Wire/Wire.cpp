@@ -40,7 +40,7 @@ void TwoWire::begin(void)
 {
 	if (onBeginCallback)
 		onBeginCallback();
-	if ((adapter_nr = i2c_getadapter(I2C2)) < 0) {
+	if ((adapter_nr = i2c_getadapter(I2C0)) < 0) {
 		return;	
 	}
 	if ((i2c_fd = i2c_openadapter(adapter_nr)) < 0) {

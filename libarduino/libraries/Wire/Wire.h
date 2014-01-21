@@ -25,8 +25,8 @@
 #include "variant.h"
 
 #define BUFFER_LENGTH 32
-#define I2C2 0x4819c000
-#define I2C1 0x00000000
+#define I2C1 0x8005A000
+#define I2C0 0x80058000
 #define WIRE_INTERFACES_COUNT 1
 
 class TwoWire : public Stream {
