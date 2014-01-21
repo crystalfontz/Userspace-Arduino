@@ -263,7 +263,7 @@ USERSPACE_CORE_PATH = $(ARDUINO_DIR)/libarduino/cores/virtual
 $(call show_config_variable,USERSPACE_CORE_PATH,[DEFAULT])
 
 ifndef USERSPACE_VAR_PATH
-    USERSPACE_VAR_PATH  = $(ARDUINO_DIR)/libarduino/variants/beaglebone
+    USERSPACE_VAR_PATH  = $(ARDUINO_DIR)/libarduino/variants/cfa10036
     $(call show_config_variable,USERSPACE_VAR_PATH,[COMPUTED],(from USERSPACE_CORE_PATH))
 endif
 
@@ -294,6 +294,7 @@ else
 endif
 #CROSS COMPILE
 ifndef CROSS_COMPILE
+    CROSS_COMPILE = arm-none-linux-gnueabi-
     $(call show_config_variable,CROSS_COMPILE,[DEFAULT])
 else
     $(call show_config_variable,CROSS_COMPILE,[USER])
