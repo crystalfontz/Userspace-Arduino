@@ -40,7 +40,7 @@ int i2c_getadapter(uint32_t i2c_bus_address)
 	DIR *d;
 	struct dirent *dir;
 	int adapter_nr = -1;
-	snprintf(buf, sizeof(buf), "/sys/devices/ocp.2/%x.i2c",
+	snprintf(buf, sizeof(buf), "/sys/devices/soc0/80000000.apb/80040000.apbx/%x.i2c",
 							i2c_bus_address);
 	d = opendir(buf);
 	if (d) {
