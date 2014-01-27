@@ -3,37 +3,37 @@
 #include <unistd.h>
 /*
 Arduino Uno format of pins
- * Arduino Pin     |  CFA10036      Header Pin
- * ----------------+----------------------------
- *   0             |  
- *   1             |  
- *   2             |
- *   3             | 
- *   4             | 
+ * Arduino Pin| FUNCTION 1 | HEADER PIN | FUNCTION 2 | HEADER PIN | FUNCTION 3 | HEADER PIN |
+ * ------------------------------------------------------------------------------------------
+ *   0        |    GPIO    |            |    RX      |            |    -       |            |
+ *   1        |    GPIO    |            |    TX      |            |    -       |            |
+ *   2        |    GPIO    |            |    -       |            |    -       |            |
+ *   3        |    GPIO    |            |    PWM     |            |    -       |            |
+ *   4        |    GPIO    |            |    -       |            |    -       |            |
+ *   5        |    GPIO    |            |    PWM     |            |    -       |            |
+ *   6        |    GPIO    |            |    PWM     |            |    -       |            |
+ *   7        |    GPIO    |            |    -       |            |    -       |            |
  *
- *   5             | 
- *   6             | 
- *   7             | 
- *   8             | 
- *   9             | 
- *  10             | 
- *
- *  11             | 
- *  12             | 
- *  13             | 
- *  14             | 
- *  15             | 
- *  16             | 
- *  17             | 
- *  18             | 
- *  19             | 
- *  20             | 
- *  21             | 
- *  22             | 
- *  23             | 
- *  24             |
- *
+ *   8        |    GPIO    |            |    -       |            |    -       |            |
+ *   9        |    GPIO    |            |    PWM     |            |    -       |            |
+ *  10        |    GPIO    |            |    PWM     |            |    SS      |            |
+ *  11        |    GPIO    |            |    PWM     |            |    MOSI    |            |
+ *  12        |    GPIO    |            |    -       |            |    MISO    |            |
+ *  13        |    GPIO    |            |    -       |            |    SCK     |            |
+ *  -         |    GND     |            |    -       |            |    -       |            |
+ *  -         |    AREF    |            |            |            |    -       |            |
+ * // ADDITIONAL GPIO
+ *  A0        |    ADC     |            |            |            |    -       |            |
+ *  A1        |    ADC     |            |            |            |    -       |            |
+ *  A2        |    ADC     |            |            |            |    -       |            |
+ *  A3        |    ADC     |            |            |            |    -       |            |
+ *  A4        |    ADC     |            |            |            |    -       |            |
+ *  A5        |    ADC     |            |            |            |    -       |            |
+ * // ADC NOT PART OF ARDUINO UNO R3
+ *  A6        |    ADC     |            |            |            |    -       |            |
+ *  A7        |    ADC     |            |            |            |            |            |
  */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
