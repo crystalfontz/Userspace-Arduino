@@ -40,7 +40,7 @@ Arduino Uno format of pins
  *  13        |    GPIO    |            |    -       |            |    SCK     |            |
  *  -         |    GND     |            |    -       |            |    -       |            |
  *  -         |    AREF    |            |            |            |    -       |            |
- * // ADDITIONAL GPIO
+ * 
  *  A0        |    ADC     |            |            |            |    -       |            |
  *  A1        |    ADC     |            |            |            |    -       |            |
  *  A2        |    ADC     |            |            |            |    -       |            |
