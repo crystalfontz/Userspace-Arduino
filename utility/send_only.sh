@@ -6,7 +6,7 @@
 
 # A bash script to upload an executable binary to beagleboard and return the output
 
-IP="192.168.7.2"
+IP="192.168.42.1"
 USERNAME="root"
 FILE=$1
 EXECUTABLE=${FILE}.elf
