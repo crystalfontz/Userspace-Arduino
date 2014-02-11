@@ -26,10 +26,19 @@
 
 #include "Stream.h"
 
+struct ring_buffer;
+
 class HardwareSerial : public Stream
 {
+  private:
+    ring_buffer *_rx_buffer;
+    ring_buffer *_tx_buffer;
+    uint8_t _rxen;
+    uint8_t _txen;
+
   public:
-    HardwareSerial(void);
+    int serial_fd;
+    HardwareSerial(ring_buffer *rx_buffer, ring_buffer *tx_buffer);
     void begin(long);
     void end();
     virtual int available(void);
@@ -38,6 +47,8 @@ class HardwareSerial : public Stream
     virtual void flush(void);
     virtual size_t write(uint8_t);
     using Print::write; // pull in write(str) and write(buf, size) from Print
+    operator bool();
+
 };
 
   extern HardwareSerial Serial;
