@@ -48,8 +48,21 @@ extern "C"{
 /* #define P8_01  DGND */
 /* #define P8_02  DGND */
 #define P3_18 (114u)
+#define P3_15 (111u)
+#define P3_14 (110u)
+#define P3_13 (109u)
+#define P3_12 (108u)
+#define P3_11 (107u)
+#define P3_10 (106u)
+#define P3_09 (105u)
+#define P3_08 (104u)
+#define P3_07 (103u)
+#define P3_06 (102u)
+#define P3_05 (101u)
+#define P3_04 (100u)
+#define P3_03 (99u)
+#define P3_02 (98u)
 
-#define P8_03 (6u)
 #define P8_04 (7u)
 #define P8_05 (2u)
 #define P8_06 (3u)

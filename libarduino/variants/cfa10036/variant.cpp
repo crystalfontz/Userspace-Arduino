@@ -64,28 +64,28 @@ PinDescription g_APinDescription[]=
   // 0 .. 13 - Digital pins
   // ----------------------
   // 0/1 - UART (Serial)
-  { P9_11,   30,  UART }, // URXD
-  { P9_13,   31,  UART }, // UTXD
+  { P9_11,   30,  UART }, // URXD P3_02
+  { P9_13,   31,  UART }, // UTXD P3_03
 
   // 2
-  { P9_15,   48,  GPIO }, // PIN2
-  { P9_14,   31,  PWM  }, // PWM1A
-  { P9_12,   60,  GPIO }, // PIN4
+  { P3_04,   48,  GPIO }, // PIN2 P3_04
+  { P9_14,   31,  PWM  }, // PWM1A P3_05
+  { P3_06,   60,  GPIO }, // PIN4 P3_06
 
   // 5
-  { P9_16,   51,  PWM  }, // PWM1B
-  { P9_42A,   7,  PWM  }, // PWM0
-  { P8_19,   22,  GPIO  }, // PWM2A
+  { P9_16,   51,  PWM  }, // PWM1B P3_07
+  { P9_42A,   7,  PWM  }, // PWM0 P3_08
+  { P3_09,   22,  GPIO  }, // PWM2A P3_09
 
   //8
-  { P9_19,   13,  I2C  }, // I2C2_SCL
-  { P9_20,   12,  I2C  }, // I2C2_SDA
+  { P9_19,   13,  I2C  }, // I2C2_SCL P3_10
+  { P9_20,   12,  I2C  }, // I2C2_SDA P3_11
 
   // 10
-  { P9_17,    5,  GPIO  }, // SPI0_CSO
-  { P9_18,    4,  GPIO  }, // MOSI
-  { P9_21,    3,  _SPI   }, // MISO
-  { P3_18,    114,  GPIO  }, 
+  { P3_12,    5,  GPIO  }, // SPI0_CSO P3_12
+  { P3_13,    4,  GPIO  }, // MOSI P3_13
+  { P9_21,    3,  _SPI   }, // MISO P3_14
+  { P3_18,    114,  GPIO  }, // P3_15
 
   // 14 .. 17 - USR LEDs
   { USR0,    53,  LED  },
