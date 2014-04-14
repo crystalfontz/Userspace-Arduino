@@ -154,29 +154,71 @@ int gpio_setdirection(uint32_t gpio_pin, const char *direction)
 	return gpio_pin;
 }
 
-int pwm_export(uint32_t pwm_pin)
+/*
+* Exports PWM to sysfs
+* @return
+* -1 : If either following directories does not exist: SYSFS_PWM_ROOT,SYSFS_PWM_ROOT pwmx/period
+*	SYSFS_PWM_ROOT pwmx/enable, SYSFS_PWM_ROOT pwmx/duty_cycle
+* 0 : Success 
+* @arguments
+* pwm : pwm ID of SoC
+* handle_enable : pointer to the file /sys/class/pwm/pwmchip0/pwmx/enable
+* handle_duty : pointer to to the file /sys/class/pwm/pwmchip0/pwmx/duty_cycle
+*/
+
+int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 {
-	FILE *fd;
-	fd = fopen("/sys/class/pwm/export", "w");
-	if (fd == NULL) {
-		fprintf(stderr, "Pin %d: ", pwm_pin);
-		perror("/pwm/export");
+	FILE *fp = NULL;
+	int ret = 0;
+	char export_value[16] = "";
+	char fs_path[SYSFS_BUF] = SYSFS_PWM_ROOT "export";
+
+	if (NULL == (fp = fopen(fs_path, "ab"))) {
 		return -1;
 	}
-	switch (pwm_pin) {
-	case 31:
-			fprintf(fd, "1");
-			break;
-	case 51:
-			fprintf(fd, "2");
-			break;
-	case 7:
-			fprintf(fd, "0");
-			break;
+	rewind(fp);
+
+	memset(export_value, 0x0, sizeof(export_value));
+	snprintf(export_value, sizeof(export_value), "%u", pwm);
+	fwrite(&export_value, sizeof(char), sizeof(export_value), fp);
+	fclose(fp);
+
+	/* Set default frequency */
+	memset(fs_path, 0x00, sizeof(fs_path));
+	snprintf(fs_path, sizeof(fs_path), SYSFS_PWM_ROOT "pwm%u/period", pwm);
+	if (NULL == (fp = fopen(fs_path, "ab"))) {
+		return -1;
 	}
-	if (fclose(fd) != 0) {
-		fprintf(stderr, "Pin %d: ", pwm_pin);
-		perror("/pwm/export");
+	rewind(fp);
+
+	memset(export_value, 0x0, sizeof(export_value));
+	snprintf(export_value, sizeof(export_value), "%u", SYSFS_PWM_PERIOD_NS);
+	fwrite(&export_value, sizeof(char), sizeof(export_value), fp);
+	fclose(fp);
+
+	/* Open persistent handle to pwm/enable */
+	memset(fs_path, 0x00, sizeof(fs_path));
+	snprintf(fs_path, sizeof(fs_path), SYSFS_PWM_ROOT "pwm%u/enable", pwm);
+	ret = open(fs_path,  O_RDWR);
+	if (ret < 0) {
+		return ret;
 	}
-	return pwm_pin;
+	*handle_enable = ret;
+
+	/* Open persistent handle to pwm/duty_cycle */
+	memset(fs_path, 0x00, sizeof(fs_path));
+	snprintf(fs_path, sizeof(fs_path), SYSFS_PWM_ROOT "pwm%u/duty_cycle",
+		 pwm);
+	ret = open(fs_path,  O_RDWR);
+	if (ret < 0) {
+		return ret;
+	}
+	*handle_duty = ret;
+
+	return 0;
 }
+	}
+
+	return 0;
+}
+

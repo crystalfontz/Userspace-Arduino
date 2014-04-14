@@ -1,6 +1,7 @@
 /*
   sysfs.h
 
+  Copyright (c) 2014 Mitul Vekariya <vekariya93@gmail.com>
   Copyright (c) 2013 Anuj Deshpande
 
   This library is free software; you can redistribute it and/or
@@ -41,7 +42,7 @@ uint32_t sysfs_adc_getvalue(uint32_t channel);
 int gpio_export(uint32_t gpio_pin);
 int gpio_unexport(uint32_t gpio_pin);
 int gpio_setdirection(uint32_t gpio_pin, const char *direction);
-int pwm_export(uint32_t pwm_pin);
+int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty);
 
 #ifdef __cplusplus
 }
