@@ -95,43 +95,31 @@ uint32_t analogRead(uint32_t pin)
 	}
 }
 
-int analogWrite(uint8_t pin, uint32_t value)
+void analogWrite(uint32_t ulPin, uint32_t ulValue)
 {
-	int pr;
-	char prev[10];
-	char buf[MAX_BUF];
-	value = value * 20000;
-	value = value / pow(2, _writeResolution);
-	printf("pin: %d, value: %d\n", pin, value);
+	int ret = 0;
 
-	switch (pin) {
-	case 3:
-		snprintf(buf, sizeof(buf), "/sys/class/pwm/pwm%d/", 1);
-		break;
-	case 5:
-		snprintf(buf, sizeof(buf), "/sys/class/pwm/pwm%d/", 2);
-		break;
-	case 6:
-		snprintf(buf, sizeof(buf), "/sys/class/pwm/pwm%d/", 0);
-		break;
-	default:
-		/* FIXME: Handle other pins */
-		break;
+	if (! digitalPinHasPWM(ulPin))
+	{
+		printf("pin%u has no pwm", ulPin);
+		return;
 	}
 
-	sysfs_read(buf, "run", prev);
-	pr = atoi(prev);
+//	if (0 == g_APinState[ulPin].uCurrentPwm) {
+//		//printf("%s: turning on pwm%u", __func__, ulPin);
+//		turnOnPWM(ulPin);
+//	}
 
-	if (pr == 0) {
-		sysfs_write(buf, "duty_ns", value);
-		sysfs_write(buf, "period_ns", 20000);
-		sysfs_write(buf, "run", 1);
-	} else {
-		sysfs_write(buf, "duty_ns", value);
+	ret = sysfsPwmEnable(pin2pwmhandle_enable(ulPin),
+			     pin2pwmhandle_duty(ulPin),
+			     ulValue);
+	
+	if(ret < 0) {
+		printf("can't enable pwm on pin%d",ulPin);
 	}
+	
+}
 
-	if (!value)
-		sysfs_write(buf, "run", 0);
 
 	/* FIXME: Return 0 on success, negative on error, or similar */
 	return pin;
