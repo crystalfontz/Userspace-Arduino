@@ -28,10 +28,12 @@
 extern "C"{
 #endif
 
+#define SYSFS_BUF 0x50
 #define MAX_BUF 100
 #define SYSFS_GPIO_DIR "/sys/class/gpio"
 #define SYSFS_LED_DIR "/sys/class/leds"
 #define SYSFS_ADC_DIR "/sys/devices/ocp.2/44e0d000.tscadc/tiadc/iio:device0"
+#define SYSFS_PWM_ROOT	"/sys/class/pwm/pwmchip0/"
 
 int sysfs_read(const char *path, const char *filename, char *value);
 int sysfs_write(const char *path, const char *filename, int value);
