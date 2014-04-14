@@ -1,6 +1,7 @@
 /*
   sysfs.c
 
+  Copyright (c) 2014 Mitul Vekariya <vekariya93@gmail.com>
   Copyright (c) 2013 Anuj Deshpande
 
   This library is free software; you can redistribute it and/or
@@ -22,11 +23,16 @@
 
 #include "sysfs.h"
 #include <stdio.h>
+#include <fcntl.h>
 #include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
 #include <time.h>
+#include <math.h>
+
+/* PWM period in nano seconds*/
+#define SYSFS_PWM_PERIOD_NS 20000
 
 int sysfs_read(const char *path, const char *filename, char *value)
 {
