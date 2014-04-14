@@ -2,6 +2,7 @@
  * wiring_analog.c - analog input and output
  * Part of Arduino - http://www.arduino.cc/
  *
+ * Copyright (c) 2014 Mitul Vekariya <vekariya93@gmail.com>
  * Copyright (c) 2013 Parav Nagarsheth
  * Copyright (c) 2005-2006 David A. Mellis
  *
@@ -24,6 +25,7 @@
 #include "wiring_analog.h"
 #include "virtual_main.h"
 #include "sysfs.h"
+#include "pins_linux.h"
 #include <math.h>
 #include <stdint.h>
 #include <stdio.h>
@@ -44,6 +46,34 @@ void analogReadResolution(uint32_t res)
 void analogWriteResolution(uint32_t res)
 {
 	_writeResolution = res;
+}
+
+int pin2pwmhandle_enable(uint8_t pin)
+{
+	uint32_t i;
+
+	// Scan mappings
+	for (i = 0; i < sizeof_g_APwmDescription; i++){
+		if(g_APwmDescription[i].ulArduinoId == pin)
+			return g_APwmDescription[i].iHandleEnable;
+	}
+
+	// Indicate error
+	return -1;
+}
+
+static int pin2pwmhandle_duty(uint8_t pin)
+{
+	uint32_t i;
+
+	// Scan mappings
+	for (i = 0; i < sizeof_g_APwmDescription; i++){
+		if(g_APwmDescription[i].ulArduinoId == pin)
+			return g_APwmDescription[i].iHandleDuty;
+	}
+
+	// Indicate error
+	return -1;
 }
 
 uint32_t analogRead(uint32_t pin)
