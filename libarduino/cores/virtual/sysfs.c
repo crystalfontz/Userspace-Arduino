@@ -256,6 +256,15 @@ int sysfsPwmEnable(int handle_enable, int handle_duty, unsigned int ulValue)
 	return 0;
 }
 
+int sysfsPwmDisable(int handle_enable)
+{
+	char enable = '0';
+	int ret = 0;
+
+	lseek(handle_enable, 0, SEEK_SET);
+	ret = write(handle_enable, &enable, sizeof(enable));
+	if (sizeof(enable) != ret) {
+		return -1;
 	}
 
 	return 0;
