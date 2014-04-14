@@ -120,9 +120,34 @@ void analogWrite(uint32_t ulPin, uint32_t ulValue)
 	
 }
 
+/* Initialise all PWM channels - 0 to 7
+*  @return : none
+*  @arguments : none
+*/
+void pwmInit(void)
+{
+	int i = 0;
+	int ret = 0;
 
-	/* FIXME: Return 0 on success, negative on error, or similar */
-	return pin;
+	for (i = 0; i < sizeof_g_APwmDescription; i++) {
+		ret = sysfsPwmExport(g_APwmDescription[i].ulPWMId,
+				     &g_APwmDescription[i].iHandleEnable,
+				     &g_APwmDescription[i].iHandleDuty);
+		if (ret < 0) {
+			printf("unable to open pwm%d",
+				    g_APwmDescription[i].ulPWMId);
+		}
+		
+		/* Disable PWM if necessary in test
+		// ret = sysfsPwmDisable(g_APwmDescription[i].iHandleEnable);
+		if (ret < 0) {
+			printf("unable to disable pwm%d",
+				    g_APwmDescription[i].ulPWMId);
+		}*/
+
+	}
+
+//	return 0;
 }
 
 #ifdef __cplusplus

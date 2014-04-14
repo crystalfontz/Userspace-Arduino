@@ -25,6 +25,7 @@
 extern "C" {
 #endif
 
+void pwmInit(void);
 void analogReadResolution(uint32_t res);
 void analogWriteResolution(uint32_t res);
 int pin2pwmhandle_enable(uint8_t pin);
