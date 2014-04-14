@@ -119,6 +119,32 @@ PwmDescription g_APwmDescription[] = {
 };
 
 uint32_t sizeof_g_APwmDescription;
+
+PinState g_APinState[]=
+{
+	/* uCurrentPwm	uCurrentInput		*/
+	{ 0,		1 },	/* 0		*/
+	{ 0,		1 },	/* 1		*/
+	{ 0,		1 },	/* 2		*/
+	{ 0,		1 },	/* 3  - PWM	*/
+	{ 0,		1 },	/* 4 		*/
+	{ 0,		1 },	/* 5  - PWM 	*/
+	{ 0,		1 },	/* 6  - PWM	*/
+	{ 0,		1 },	/* 7 		*/
+	{ 0,		1 },	/* 8 		*/
+	{ 0,		1 },	/* 9  - PWM	*/
+	{ 0,		1 },	/* 10 - PWM	*/
+	{ 0,		1 },	/* 11 - PMW	*/
+	{ 0,		1 },	/* 12		*/
+	{ 0,		1 },	/* 13		*/
+	{ 0,		1 },	/* 14		*/
+	{ 0,		1 },	/* 15		*/
+	{ 0,		1 },	/* 16		*/
+	{ 0,		1 },	/* 17		*/
+	{ 0,		1 },	/* 18		*/
+	{ 0,		1 },	/* 19		*/
+};
+uint32_t sizeof_g_APinState;
 #ifdef __cplusplus
 }
 #endif

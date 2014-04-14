@@ -43,8 +43,16 @@ typedef struct _PwmDescription
 	int			iHandleDuty;		// Persistent handle
 } PwmDescription;
 
+typedef struct _PinState
+{
+	uint32_t	uCurrentPwm;	/* True if currently used as PWM */
+	uint32_t	uCurrentInput;	/* True if currently input */
+} PinState;
+
 extern PwmDescription g_APwmDescription[];
 extern uint32_t sizeof_g_APwmDescription;
+extern PinState g_APinState[];
+extern uint32_t sizeof_g_APinState;
 
 /*----------------------------------------------------------------------------
  *        Pins
