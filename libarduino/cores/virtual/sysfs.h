@@ -43,6 +43,7 @@ int gpio_export(uint32_t gpio_pin);
 int gpio_unexport(uint32_t gpio_pin);
 int gpio_setdirection(uint32_t gpio_pin, const char *direction);
 int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty);
+int sysfsPwmEnable(int handle_enable, int handle_duty, unsigned int ulValue);
 
 #ifdef __cplusplus
 }

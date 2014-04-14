@@ -217,6 +217,45 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 
 	return 0;
 }
+
+/* Enable given pwm channel
+*  @return
+*  -1 : can not write to /sys/class/pwm/pwmchip0/pwmx/enable
+*	can not write to the file /sys/class/pwm/pwmchip0/pwmx/duty_cycle
+*   0 : success
+*  @parameters
+*  handler_enable : pointer to the file /sys/class/pwm/pwmchip0/pwmx/enable
+*  handle_duty : pointer to the file /sys/class/pwm/pwmchip0/pwmx/duty_cycle
+*  ulValue : duty cycle of PWM
+*  TODO : handle invalid ulValue
+*/
+int sysfsPwmEnable(int handle_enable, int handle_duty, unsigned int ulValue)
+{
+	char value[16] = "";
+	char enable = '1';
+	int ret = 0;
+	unsigned int value_duty = 0;
+	
+	value_duty = ulValue * SYSFS_PWM_PERIOD_NS;
+	value_duty = value_duty / pow(2, 8); // Default resolution set to 8 bits
+	
+	memset(value, 0x0, sizeof(value));
+	snprintf(value, sizeof(value), "%u", value_duty);
+	lseek(handle_duty, 0, SEEK_SET);
+	ret = write(handle_duty, &value, sizeof(value));
+	if (sizeof(value) != ret) {
+		return -1;
+	}
+
+	lseek(handle_enable, 0, SEEK_SET);
+	ret = write(handle_enable, &enable, sizeof(enable));
+	if (sizeof(enable) != ret) {
+		return -1;
+	}
+
+	return 0;
+}
+
 	}
 
 	return 0;
