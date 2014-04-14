@@ -104,6 +104,21 @@ PinDescription g_APinDescription[]=
   { AIN1,  ANALOG_PIN,  ANALOG, 1 }
 } ;
 
+/* Array to match sysfs PWM Id againts Arduino pin no */
+PwmDescription g_APwmDescription[] = {
+	{ 0,	3,	-1,	-1 },
+	{ 1,	5,	-1,	-1 },
+	{ 2,	6,	-1,	-1 },
+	{ 3,	9,	-1,	-1 },
+	{ 4,	10,	-1,	-1 },
+	{ 5,	11,	-1,	-1 },
+
+/* Extra PWM pins
+	{ 6,	,	-1,	-1 },
+	{ 7,	,	-1,	-1 },*/
+};
+
+uint32_t sizeof_g_APwmDescription;
 #ifdef __cplusplus
 }
 #endif

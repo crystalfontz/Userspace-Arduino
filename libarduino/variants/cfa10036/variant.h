@@ -35,6 +35,17 @@
 extern "C"{
 #endif /* __cplusplus */
 
+typedef struct _PwmDescription
+{
+	uint32_t		ulPWMId;		// PWM identity in sysfs
+	uint32_t		ulArduinoId;		// Arduino pin ID
+	int			iHandleEnable;		// Persistent handle
+	int			iHandleDuty;		// Persistent handle
+} PwmDescription;
+
+extern PwmDescription g_APwmDescription[];
+extern uint32_t sizeof_g_APwmDescription;
+
 /*----------------------------------------------------------------------------
  *        Pins
  *----------------------------------------------------------------------------*/
