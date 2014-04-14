@@ -160,6 +160,7 @@ extern "C" {
 void init( void )
 {
   /* Derive the offsets and export the GPIOs */
+  for (unsigned int i = 0; i < PINS_COUNT; i += 1) {
 	// if(g_APinDescription[i].pinType != ANALOG)
 	// 	g_APinDescription[i].pinOffset = g_APinDescription[i].headerPin * 4;
 	// if(g_APinDescription[i].pinType == GPIO)
@@ -167,6 +168,9 @@ void init( void )
 	
   }
 
+ sizeof_g_APwmDescription = sizeof(g_APwmDescription)/sizeof(struct _PwmDescription);
+ pwmInit();
+ sizeof_g_APinState = sizeof(g_APinState)/sizeof(struct _PinState);
 }
 
 #ifdef __cplusplus
