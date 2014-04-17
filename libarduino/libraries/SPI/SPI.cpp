@@ -24,10 +24,9 @@
 
 SPIClass SPI;
 SPIClass::SPIClass() {
-  tr.len = 1;
-  tr.speed_hz = 4000000 ; // default set to 4 Mhz
-  tr.bits_per_word = 8;
-  device="/dev/spidev1.0";
+ 	this->mode = SPI_MODE0;
+	this->bitOrder = MSBFIRST;
+	this->clkDiv = SPI_CLOCK_DIV4;
 }
 void SPIClass::begin(){
 
