@@ -83,16 +83,72 @@ void SPIClass::setBitOrder(uint8_t bitOrder) {
 }
 
 void SPIClass::setDataMode(uint8_t mode) {
-  ret = ioctl(fd, SPI_IOC_WR_MODE, &mode);
-  if (ret == -1)
-	perror("SPI_IOC_WR_MODE not set");
+	
+	uint8_t linuxSpiMode = 0;
+
+	switch(mode) {
+	case SPI_MODE0:
+		linuxSpiMode = SPI_MODE_0;
+		break;
+	case SPI_MODE1:
+		linuxSpiMode = SPI_MODE_1;
+		break;
+	case SPI_MODE2:
+		linuxSpiMode = SPI_MODE_2;
+		break;
+	case SPI_MODE3:
+		linuxSpiMode = SPI_MODE_3;
+		break;
+	default:
+		printf("Invalid SPI mode specified\n");
+		return;
+	}
+
+	if (ioctl (this->fd, SPI_IOC_WR_MODE, &linuxSpiMode) < 0) {
+		perror("Failed to set SPI mode\n");
+	}
+	
+	this->mode = mode;
 }
 
-void SPIClass::setClockDivider(uint32_t rate) {
-  ret = ioctl(fd, SPI_IOC_WR_MAX_SPEED_HZ, &rate);
-  if (ret == -1)
-	perror("SPI_IOC_WR_MAX_SPEED_HZ not set");
-}
+void SPIClass::setClockDivider(uint32_t clkDiv) {
+
+	uint32_t maxSpeedHz = SPI_CLK_DEFAULT_HZ;
+
+	switch(clkDiv)
+	{
+	case SPI_CLOCK_DIV2:
+		maxSpeedHz = SPI_CLK_DEFAULT_HZ << 1;
+		break;
+	case SPI_CLOCK_DIV4:
+		break;
+	case SPI_CLOCK_DIV8:
+		maxSpeedHz = SPI_CLK_DEFAULT_HZ >> 1;
+		break;
+	case SPI_CLOCK_DIV16:
+		maxSpeedHz = SPI_CLK_DEFAULT_HZ >> 2;
+		break;
+	case SPI_CLOCK_DIV32:
+		maxSpeedHz = SPI_CLK_DEFAULT_HZ >> 3;
+		break;
+	case SPI_CLOCK_DIV64:
+		maxSpeedHz = SPI_CLK_DEFAULT_HZ >> 4;
+		break;
+	case SPI_CLOCK_DIV128:
+		maxSpeedHz = SPI_CLK_DEFAULT_HZ >> 5;
+		break;
+	default:
+		printf("Invalid SPI clock\n");
+		return;
+	}
+
+	if (ioctl (this->fd, SPI_IOC_WR_MAX_SPEED_HZ, &maxSpeedHz) < 0) {
+		perror("Failed to set SPI clock speed\n");
+		return;
+	}
+
+	this->clkDiv = clkDiv;
+ }
 
 void SPIClass::end() {
   close(fd);
