@@ -40,12 +40,31 @@ void SPIClass::begin(){
 	perror("SPI_IOC_WR_BITS_PER_WORD not set");
 }
 
-byte SPIClass::transfer(byte data) {
-  // ret = ioctl(fd, SPI_IOC_MESSAGE(1), &tr);
-  // if (ret < 1)
-  // 	perror("SPI_IOC_MESSAGE not sent");
+uint8_t SPIClass::transfer(uint8_t txData) {
+	
+	struct spi_ioc_transfer xfer; 
+	unsigned char buf[2]; 
+	int status, len; 
+	len = sizeof(txData); 
+	
+	memset(xfer, 0, sizeof xfer); 
+	memset(buf, 0, sizeof buf); 
+	
+	buf[0] = txData; 
 
-  return data;
+	xfer.tx_buf = (__u64) &buf;
+	xfer.rx_buf = (__u64) 0;
+		 
+	xfer.len = 1; 
+	
+	status = ioctl(this->fd, SPI_IOC_MESSAGE(1), &xfer); 
+	//status = write(this->fd, &data, 8);
+	if (status < 0) { 
+		perror("SPI_IOC_MESSAGE"); 
+		return -1; 
+	} 
+	
+	return buf[1];
 }
 
 void SPIClass::setBitOrder(uint8_t bitOrder) {
