@@ -30,14 +30,16 @@ SPIClass::SPIClass() {
 }
 void SPIClass::begin(){
 
-  fd=open(device,O_RDWR);
-  if(fd < 0){
-	perror("Can't open device");
-	abort();
-  }
-  ret = ioctl(fd, SPI_IOC_WR_BITS_PER_WORD, &tr.bits_per_word);
-  if (ret == -1)
-	perror("SPI_IOC_WR_BITS_PER_WORD not set");
+	this->fd=open(LINUX_SPIDEV,O_RDWR);
+	if(fd < 0){
+		perror("Can't open SPI device\n");
+		abort();
+ 	}
+
+	this->setDataMode(this->mode);
+	this->setClockDivider(this->clkDiv);
+	this->setBitOrder(this->bitOrder);
+	
 }
 
 uint8_t SPIClass::transfer(uint8_t txData) {
