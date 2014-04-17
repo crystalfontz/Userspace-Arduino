@@ -17,7 +17,7 @@
 #include <inttypes.h>
 #include "linux-virtual.h"
 
-#define SPI_CLOCK_DIV4 2000000
+#define SPI_CLOCK_DIV4 0x00
 #define SPI_CLOCK_DIV16 0x01
 #define SPI_CLOCK_DIV64 0x02
 #define SPI_CLOCK_DIV128 0x03
@@ -34,14 +34,13 @@
 #define MSBFIRST 1
 
 class SPIClass {
-		int ret;
 		int fd;
-		const char *device;
+		uint8_t mode;
 		int bitOrder;
-		struct spi_ioc_transfer tr;
+		uint8_t clkDiv;
 public:
 		SPIClass();
-		byte transfer(byte _data);
+		unsigned char transfer(byte _data);
 		void begin();
 		void end();
 		void setBitOrder(uint8_t);
