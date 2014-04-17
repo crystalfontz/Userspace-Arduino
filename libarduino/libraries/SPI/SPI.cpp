@@ -1,4 +1,5 @@
 /*
+ * Copyright (c) 2014 by Mitul Vekariya <vekariya93@gmail.com>
  * Copyright (c) 2013 by Anuj Deshpande <anujdeshpande92@gmail.com>
  * SPI Library for Userspace Arduino
  *
