@@ -16,6 +16,11 @@
 #include <linux/spi/spidev.h>
 #include "SPI.h"
 #include "linux-virtual.h"
+#include "variant.h"
+
+
+/* For Arduino default clock rate is 4MHz */
+#define SPI_CLK_DEFAULT_HZ 4000000
 
 SPIClass SPI;
 SPIClass::SPIClass() {
