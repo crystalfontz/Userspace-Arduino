@@ -49,13 +49,19 @@ byte SPIClass::transfer(byte data) {
   return data;
 }
 
-void SPIClass::setBitOrder(uint8_t bOrder) {
-  if(bOrder == LSBFIRST) {
-	bitOrder=LSBFIRST;
-  }
-  else {
-	bitOrder=MSBFIRST;
-  }
+void SPIClass::setBitOrder(uint8_t bitOrder) {
+
+	uint8_t lsbFirst = 0;
+	
+	if (bitOrder == LSBFIRST) {
+		lsbFirst = 1;
+	}
+
+	if (ioctl (this->fd, SPI_IOC_WR_LSB_FIRST, &lsbFirst) < 0) {
+		perror("Failed to set SPI bit justification\n");
+	}
+
+	this->bitOrder = bitOrder;
 }
 
 void SPIClass::setDataMode(uint8_t mode) {
