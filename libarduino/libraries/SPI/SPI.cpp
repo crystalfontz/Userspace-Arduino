@@ -49,7 +49,7 @@ uint8_t SPIClass::transfer(uint8_t txData) {
 	int status, len; 
 	len = sizeof(txData); 
 	
-	memset(xfer, 0, sizeof xfer); 
+	//memset(xfer, 0, sizeof xfer); 
 	memset(buf, 0, sizeof buf); 
 	
 	buf[0] = txData; 
