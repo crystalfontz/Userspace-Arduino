@@ -54,10 +54,10 @@ uint8_t SPIClass::transfer(uint8_t txData) {
 	
 	buf[0] = txData; 
 
-	xfer.tx_buf = (__u64) &buf;
+	xfer.tx_buf = (__u64) &txData;
 	xfer.rx_buf = (__u64) 0;
 		 
-	xfer.len = 1; 
+	xfer.len = len; 
 	
 	status = ioctl(this->fd, SPI_IOC_MESSAGE(1), &xfer); 
 	//status = write(this->fd, &data, 8);
