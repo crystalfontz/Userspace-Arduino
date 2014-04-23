@@ -70,7 +70,7 @@ PinDescription g_APinDescription[]=
   // 2
   { P3_04,   48,  GPIO }, // PIN2 P3_04
   { P9_14,   31,  PWM  }, // PWM1A P3_05
-  { P3_06,   60,  GPIO }, // PIN4 P3_06
+  { P3_06,   83,  GPIO }, // PIN4 P2_19
 
   // 5
   { P9_16,   51,  PWM  }, // PWM1B P3_07
@@ -161,10 +161,10 @@ void init( void )
 {
   /* Derive the offsets and export the GPIOs */
   for (unsigned int i = 0; i < PINS_COUNT; i += 1) {
-	// if(g_APinDescription[i].pinType != ANALOG)
-	// 	g_APinDescription[i].pinOffset = g_APinDescription[i].headerPin * 4;
-	// if(g_APinDescription[i].pinType == GPIO)
-	//	gpio_export(g_APinDescription[i].gpioPin);
+	 if(g_APinDescription[i].pinType != ANALOG)
+	 	g_APinDescription[i].pinOffset = g_APinDescription[i].headerPin * 4;
+	 if(g_APinDescription[i].pinType == GPIO)
+		gpio_export(g_APinDescription[i].gpioPin);
 	
   }
 
