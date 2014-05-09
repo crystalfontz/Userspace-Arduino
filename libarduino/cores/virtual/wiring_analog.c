@@ -129,6 +129,10 @@ void pwmInit(void)
 	int i = 0;
 	int ret = 0;
 
+	#ifdef DEBUG
+	printf("Exporting PWM \n");
+	#endif
+	
 	for (i = 0; i < sizeof_g_APwmDescription; i++) {
 		ret = sysfsPwmExport(g_APwmDescription[i].ulPWMId,
 				     &g_APwmDescription[i].iHandleEnable,
