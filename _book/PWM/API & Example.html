@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Specifications | Userspace-Arduino for CFA10036</title>
+        <title>API and additional features | Userspace-Arduino for CFA10036</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../PWM/API &amp; Example.html" />
+        <link rel="next" href="../PWM/Demo.html" />
         
         
-        <link rel="prev" href="../PWM/PWM.html" />
+        <link rel="prev" href="../PWM/specifications.html" />
         
 
-        <meta property="og:title" content="Specifications | Userspace-Arduino for CFA10036">
+        <meta property="og:title" content="API and additional features | Userspace-Arduino for CFA10036">
         <meta property="og:site_name" content="Userspace-Arduino for CFA10036">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book"  data-level="2.1" data-basepath=".." data-revision="1400080537692">
+    <div class="book"  data-level="2.2" data-basepath=".." data-revision="1400080537692">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -174,7 +174,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 71.42857142857143%;min-width: 57.142857142857146%;"></div>
+        <div class="inner" style="width: 85.71428571428571%;min-width: 71.42857142857143%;"></div>
     </div>
     <div class="chapters">
     
@@ -190,7 +190,7 @@
     
         <a href="../PWM/specifications.html" title="Specifications" class="chapter done " data-progress="2.1" style="left: 71.42857142857143%;"></a>
     
-        <a href="../PWM/API &amp; Example.html" title="API and additional features" class="chapter  " data-progress="2.2" style="left: 85.71428571428571%;"></a>
+        <a href="../PWM/API &amp; Example.html" title="API and additional features" class="chapter done " data-progress="2.2" style="left: 85.71428571428571%;"></a>
     
         <a href="../PWM/Demo.html" title="Demo" class="chapter  " data-progress="2.3" style="left: 100%;"></a>
     
@@ -199,73 +199,44 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_8">
+                    <section class="normal" id="section-gitbook_2">
                     
-                        <h1 id="pwm-specifications">PWM specifications</h1>
-<p>There are 8 PWM channels available on CFA10036 board.</p>
-<h3 id="pinout-table">Pinout Table</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">PWM channel no</th>
-<th style="text-align:center">Arduino Uno Pin no</th>
-<th style="text-align:center">Ball no of CFA10036</th>
-<th style="text-align:center">Pin no in CFA10037</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">PWM0</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">K7</td>
-<td style="text-align:center">P3.16</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM1</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">L7</td>
-<td style="text-align:center">P3.17</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM2*</td>
-<td style="text-align:center">6</td>
-<td style="text-align:center">K8</td>
-<td style="text-align:center">P3.18</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM3*</td>
-<td style="text-align:center">9</td>
-<td style="text-align:center">G7</td>
-<td style="text-align:center">P3.20</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM4*</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">G6</td>
-<td style="text-align:center">P3.21</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM5*</td>
-<td style="text-align:center">11</td>
-<td style="text-align:center">F7</td>
-<td style="text-align:center">P3.22</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM6*</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">E7</td>
-<td style="text-align:center">P3.23</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM7</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">E8</td>
-<td style="text-align:center">P3.26</td>
-</tr>
-</tbody>
-</table>
-<p><code>* There is an issue with these PWMs.</code>
-<code>They won&#39;t work with Userspace code directly. Work around for that problem is available.</code></p>
+                        <h1 id="pwm-api-example">PWM API &amp; Example</h1>
+<hr>
+<p><strong>syntax</strong></p>
+<p>analogWrite (pin, value)</p>
+<p><strong>parameters</strong></p>
+<p><em>pin</em>: pin no of Arduino Uno (0 to 5 only)</p>
+<p><em>value</em>: duty cycle 0(min) to 255(max)</p>
+<h4 id="additional-features-that-arduino-doesn-t-provide">Additional features that Arduino doesn&#39;t provide</h4>
+<p>CFA10036 has eight PWM channels, while Arduino Uno has only six. This is a good thing who wants to use two extra channels. Right now only six channels are enabled (to maintain the compability with Arduino Uno), but who wants to enjoy an extra scoop can follow mentioned procedure.</p>
+<h4 id="enable-extra-pwms">Enable extra PWMs</h4>
+<p>Open following file using your favourite text editor:</p>
+<pre><code>Userspace-Arduino/libarduino/variants/cfa10036/variant.cpp
+</code></pre><p>Uncomment the last two lines to enable PWM6 and PWM7.</p>
+<pre><code class="lang-cpp"><span class="hljs-comment">/* Array to match sysfs PWM Id againts Arduino pin no */</span>
+PwmDescription g_APwmDescription[] = {
+    { <span class="hljs-number">0</span>,    <span class="hljs-number">3</span>,    -<span class="hljs-number">1</span>,    -<span class="hljs-number">1</span> },
+    { <span class="hljs-number">1</span>,    <span class="hljs-number">5</span>,    -<span class="hljs-number">1</span>,    -<span class="hljs-number">1</span> },
+    { <span class="hljs-number">2</span>,    <span class="hljs-number">6</span>,    -<span class="hljs-number">1</span>,    -<span class="hljs-number">1</span> },
+    { <span class="hljs-number">3</span>,    <span class="hljs-number">9</span>,    -<span class="hljs-number">1</span>,    -<span class="hljs-number">1</span> },
+    { <span class="hljs-number">4</span>,    <span class="hljs-number">10</span>,    -<span class="hljs-number">1</span>,    -<span class="hljs-number">1</span> },
+    { <span class="hljs-number">5</span>,    <span class="hljs-number">11</span>,    -<span class="hljs-number">1</span>,    -<span class="hljs-number">1</span> },
+
+<span class="hljs-comment">/* Extra PWM pins
+    { 6,    ,    -1,    -1 },
+    { 7,    ,    -1,    -1 },*/</span>
+};
+</code></pre>
+<h4 id="change-default-frequency-of-pwm">Change default frequency of PWM</h4>
+<p>You can&#39;t change frequency of PWM in case of Arduino Uno. We don&#39;t have that kind of restriction here. Default frequency for CFA10036 is set to 20 &#181;s.</p>
+<p>Open following file in your favourite text editor:</p>
+<pre><code>Userspace-Arduino/libarduino/cores/virtual/sysfs.c
+</code></pre><p>modify following line</p>
+<pre><code class="lang-cpp"><span class="hljs-comment">/* PWM period in nano seconds*/</span>
+<span class="hljs-preprocessor">#define SYSFS_PWM_PERIOD_NS 20000</span>
+</code></pre>
+<p><code>NOTE: write period in term of nano seconds only.</code></p>
 
                     
                     </section>
@@ -275,10 +246,10 @@
         </div>
 
         
-        <a href="../PWM/PWM.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../PWM/specifications.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../PWM/API &amp; Example.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../PWM/Demo.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
