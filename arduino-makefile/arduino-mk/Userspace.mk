@@ -463,6 +463,9 @@ CPPFLAGS      += -I. -I$(USERSPACE_CORE_PATH) -I$(USERSPACE_VAR_PATH)/$(VARIANT)
 $(call show_config_variable,USERSPACE_CORE_PATH,[DEFAULT])
 
 CFLAGS        += $(EXTRA_FLAGS) $(EXTRA_CFLAGS)
+ifeq ($(debug),y)
+	CFLAGS += -DDEBUG
+endif
 CXXFLAGS      += $(EXTRA_FLAGS) $(EXTRA_CXXFLAGS)
 ASFLAGS       += -I. -x assembler-with-cpp
 LDFLAGS       += -Wl,--gc-sections -lrt $(EXTRA_FLAGS) $(EXTRA_CXXFLAGS)
