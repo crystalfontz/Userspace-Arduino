@@ -39,3 +39,15 @@ cd ~
 git clone https://github.com/crystalfontz/Userspace-Arduino.git
 cd Userspace-Arduino
 ```
+
+#### Run an example
+
+Connect the CFA10036 to your PC using a USB cable. Wait for it to boot-up.
+```
+cd arduino-makefile/examples
+cd BlinkUserspace
+make upload
+```
+When prompted, use username as "root" and password as "root".
+
+You should see the LED blink periodically.
