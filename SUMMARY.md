@@ -4,6 +4,7 @@
     * [CFA10036](overview/CFA10036.md)
     * [CFA10037](overview/CFA10037.md)
 * [Getting Started](Getting Started.md)
+* [Running Custom Sketches](Running Custom Sketches.md)
 * [PWM](PWM/PWM.md)
     * [Specifications](PWM/specifications.md)
     * [API and additional features](PWM/API & Example.md)

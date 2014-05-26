@@ -14,6 +14,8 @@ Once you've got your linux machine running, you might want to run these commands
 sudo aptitude install g++ bison flex gettext ncurses-dev texinfo git
 ```
 Use a terminal (Ctrl+Alt+t on Ubuntu) to copy-paste the above command.
+
+**Note: You've to use Ctrl+Shift+v to paste in a Ubuntu terminal.**
 #### Installing the toolchain
 
 1. Get the CodeSourcery toolchain for ARM from https://sourcery.mentor.com/GNUToolchain/release2450
