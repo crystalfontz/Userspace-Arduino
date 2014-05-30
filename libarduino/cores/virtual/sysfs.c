@@ -103,19 +103,24 @@ void sysfs_led_setvalue(uint8_t led, uint8_t value)
 
 int gpio_export(uint32_t gpio_pin)
 {
-	FILE *fd;
-	fd = fopen("/sys/class/gpio/export", "w");
-	if (fd == NULL) {
-		fprintf(stderr, "Pin %d: ", gpio_pin);
-		perror("/gpio/export");
-		return gpio_pin;
+	FILE *fd = NULL;
+	int ret = 0;
+	char export_value[16] = "";
+	char fs_path[SYSFS_BUF] = SYSFS_GPIO_DIR "export";
+	
+	if (NULL == (fd = fopen(fs_path, "ab")))
+	{
+		//print("GPIO error);
+		return -1;
 	}
-	fprintf(fd, "%d", gpio_pin);
-	if (fclose(fd) != 0) {
-		fprintf(stderr, "Pin %d: ", gpio_pin);
-		perror("/gpio/export");
-	}
-	return gpio_pin;
+	rewind(fd);
+	
+	memset(export_value, 0x0, sizeof(export_value));
+	snprintf(export_value, sizeof(export_value), "%u", gpio_pin);
+	fwrite(&export_value, sizeof(char), sizeof(export_value), fd);
+	fclose(fd);
+
+	return ret;
 }
 
 int gpio_unexport(uint32_t gpio_pin)

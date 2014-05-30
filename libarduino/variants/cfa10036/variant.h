@@ -60,6 +60,7 @@ extern PwmDescription g_APwmDescription[];
 extern uint32_t sizeof_g_APwmDescription;
 extern PinState g_APinState[];
 extern uint32_t sizeof_g_APinState;
+extern uint32_t sizeof_g_APinDescription;
 
 /*----------------------------------------------------------------------------
  *        Pins
