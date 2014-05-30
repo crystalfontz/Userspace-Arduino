@@ -41,6 +41,7 @@ extern void digitalWrite(uint8_t, uint8_t);
  * \return HIGH or LOW
  */
 extern int digitalRead(uint8_t);
+void pinInit(void);
 
 #ifdef __cplusplus
 }

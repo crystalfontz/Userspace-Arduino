@@ -26,6 +26,7 @@
 
 #include "wiring_digital.h"
 #include "linux-virtual.h"
+#include "pins_linux.h"
 
 void pinMode(uint8_t pin, uint8_t mode)
 {
@@ -56,3 +57,13 @@ int digitalRead(uint8_t pin)
 		return 0;
 }
 
+void pinInit(void)
+{
+	uint16_t i ;
+	for (i = 0; i < sizeof_g_APinDescription; i++) {
+		if(g_APinDescription[i].pinType != ANALOG)
+	 	g_APinDescription[i].pinOffset = g_APinDescription[i].headerPin * 4;
+	 	if(g_APinDescription[i].pinType == GPIO)
+		gpio_export(g_APinDescription[i].gpioPin);
+	}
+}
