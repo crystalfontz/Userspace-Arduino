@@ -30,21 +30,29 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include "debug.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-static uint32_t _readResolution = 10;
-static uint32_t _writeResolution = 8;
+uint32_t _readResolution = 10;
+uint32_t _writeResolution = 8;
 
 void analogReadResolution(uint32_t res)
 {
+	#ifdef DEBUG
+		trace_debug("Analog pin read resolution is set from %d to %d \n", _readResolution, res);
+	#endif
 	_readResolution = res;
 }
 
 void analogWriteResolution(uint32_t res)
-{
+{	
+	#ifdef DEBUG
+		trace_debug("Analog pin write resolution is set from %d to %d \n", _writeResolution, res);
+	#endif
+	
 	_writeResolution = res;
 }
 
@@ -100,22 +108,24 @@ void analogWrite(uint32_t ulPin, uint32_t ulValue)
 	int ret = 0;
 
 	if (! digitalPinHasPWM(ulPin))
-	{
-		printf("pin%u has no pwm", ulPin);
+	{	
+		#ifdef DEBUG
+		trace_debug("pin%u has no pwm", ulPin);
+		#endif
 		return;
 	}
-
-//	if (0 == g_APinState[ulPin].uCurrentPwm) {
-//		//printf("%s: turning on pwm%u", __func__, ulPin);
-//		turnOnPWM(ulPin);
-//	}
-
+	
+	#ifdef DEBUG
+		trace_debug("Writing %d to PWM%d \n",ulValue, ulPin);	
+	#endif
+	
 	ret = sysfsPwmEnable(pin2pwmhandle_enable(ulPin),
 			     pin2pwmhandle_duty(ulPin),
 			     ulValue);
-	
 	if(ret < 0) {
-		printf("can't enable pwm on pin%d",ulPin);
+		#ifndef DEBUG
+		trace_debug("Oh! There is something wrong with PWM%d. For more details try \"make debug=y upload \" \n",ulPin);
+		#endif
 	}
 	
 }
@@ -130,23 +140,33 @@ void pwmInit(void)
 	int ret = 0;
 
 	#ifdef DEBUG
-	printf("Exporting PWM \n");
+		trace_debug("Exporting PWM... \n");
 	#endif
 	
 	for (i = 0; i < sizeof_g_APwmDescription; i++) {
+	
+		#ifdef DEBUG
+			trace_debug("Exporting PWM %d \n",i);
+		#endif
+		
 		ret = sysfsPwmExport(g_APwmDescription[i].ulPWMId,
 				     &g_APwmDescription[i].iHandleEnable,
 				     &g_APwmDescription[i].iHandleDuty);
 		if (ret < 0) {
-			printf("unable to open pwm%d",
+			#ifndef DEBUG
+			trace_debug("unable to open pwm%d \n",
 				    g_APwmDescription[i].ulPWMId);
+			#endif	    
 		}
 		
 		/* Disable PWM if necessary in test
-		// ret = sysfsPwmDisable(g_APwmDescription[i].iHandleEnable);
+		 ret = sysfsPwmDisable(g_APwmDescription[i].iHandleEnable);
+		
 		if (ret < 0) {
-			printf("unable to disable pwm%d",
+			#ifndef DEBUG
+			printf("unable to disable pwm%d \n",
 				    g_APwmDescription[i].ulPWMId);
+			#endif
 		}*/
 
 	}

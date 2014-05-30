@@ -22,6 +22,7 @@
 */
 
 #include "sysfs.h"
+#include "debug.h"
 #include <stdio.h>
 #include <fcntl.h>
 #include <stdlib.h>
@@ -179,6 +180,9 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 	char fs_path[SYSFS_BUF] = SYSFS_PWM_ROOT "export";
 
 	if (NULL == (fp = fopen(fs_path, "ab"))) {
+		#ifdef DEBUG
+			trace_debug("Unable to open: %s \n",fs_path);
+		#endif
 		return -1;
 	}
 	rewind(fp);
@@ -192,6 +196,9 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 	memset(fs_path, 0x00, sizeof(fs_path));
 	snprintf(fs_path, sizeof(fs_path), SYSFS_PWM_ROOT "pwm%u/period", pwm);
 	if (NULL == (fp = fopen(fs_path, "ab"))) {
+		#ifdef DEBUG
+			trace_debug("Unable to open: %s \n",fs_path);
+		#endif
 		return -1;
 	}
 	rewind(fp);
@@ -206,6 +213,9 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 	snprintf(fs_path, sizeof(fs_path), SYSFS_PWM_ROOT "pwm%u/enable", pwm);
 	ret = open(fs_path,  O_RDWR);
 	if (ret < 0) {
+		#ifdef DEBUG
+			trace_debug("Unable to open: %s \n", fs_path);
+		#endif
 		return ret;
 	}
 	*handle_enable = ret;
@@ -216,6 +226,9 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 		 pwm);
 	ret = open(fs_path,  O_RDWR);
 	if (ret < 0) {
+		#ifdef DEBUG
+			trace_debug("Unable to open: %s \n", fs_path);
+		#endif
 		return ret;
 	}
 	*handle_duty = ret;
@@ -241,20 +254,32 @@ int sysfsPwmEnable(int handle_enable, int handle_duty, unsigned int ulValue)
 	int ret = 0;
 	unsigned int value_duty = 0;
 	
+	if(ulValue >= pow(2,_writeResolution)) {
+		trace_debug("value written is more than PWM resolution \n");
+		return -1;
+	}
+	
 	value_duty = ulValue * SYSFS_PWM_PERIOD_NS;
-	value_duty = value_duty / pow(2, 8); // Default resolution set to 8 bits
+	value_duty = value_duty / pow(2, _writeResolution); // Default resolution set to 8 bits
 	
 	memset(value, 0x0, sizeof(value));
 	snprintf(value, sizeof(value), "%u", value_duty);
 	lseek(handle_duty, 0, SEEK_SET);
 	ret = write(handle_duty, &value, sizeof(value));
 	if (sizeof(value) != ret) {
+		#ifdef DEBUG
+			trace_debug("Can not write %d to duty_cycle \n", ulValue);
+		#endif
 		return -1;
+		
 	}
 
 	lseek(handle_enable, 0, SEEK_SET);
 	ret = write(handle_enable, &enable, sizeof(enable));
 	if (sizeof(enable) != ret) {
+		#ifdef DEBUG
+			trace_debug("Can not write %s to enable", enable);
+		#endif
 		return -1;
 	}
 
