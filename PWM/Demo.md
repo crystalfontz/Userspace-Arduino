@@ -1,4 +1,4 @@
-# Demo
+# PWM Demo
 
 **Example**
 Check the PWM output using LED

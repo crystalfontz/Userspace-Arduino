@@ -5,11 +5,15 @@
     * [CFA10037](overview/CFA10037.md)
 * [Getting Started](Getting Started.md)
 * [Running Custom Sketches](Running Custom Sketches.md)
+* [GPIO](GPIO/GPIO.md)
+    * [Specifications](GPIO/Specifications.md)
+    * [API and additional features](GPIO/API and additional features.md)
+    * [Demo](GPIO/Demo.md)
 * [PWM](PWM/PWM.md)
     * [Specifications](PWM/specifications.md)
     * [API and additional features](PWM/API & Example.md)
     * [Demo](PWM/Demo.md)
 * [SPI](SPI/SPI.md)
     * [Specifications](SPI/Specifications.md)
-    * API and additional features
+    * [API and additional features](SPI/API and additional features.md)
 

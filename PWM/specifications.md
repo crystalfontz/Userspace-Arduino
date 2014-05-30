@@ -14,6 +14,3 @@ There are 8 PWM channels available on CFA10036 board.
 | PWM5* | 11 | F7 | P3.22 |
 | PWM6* |  - | E7 | P3.23 |
 | PWM7  |  - | E8 | P3.26 |
-
-```* There is an issue with these PWMs.```
-```They won't work with Userspace code directly. Work around for that problem is available.```

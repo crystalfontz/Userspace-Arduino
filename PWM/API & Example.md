@@ -1,4 +1,4 @@
-# PWM API & Example
+# PWM API
 -------------------------------------------------
 
 **syntax**
@@ -11,8 +11,20 @@ analogWrite (pin, value)
 
 *value*: duty cycle 0(min) to 255(max)
 
+#### change resolution of analogWrite( )
+
+Use following function in sketch before using analogWrite() to change default resolution (8-bit):
+
+**analogWriteResolution (bits)**
+
+for example, add following line in existing sketch to change PWM resolution to 12 bit (0 to 4096).
+```
+analogWriteResolution(12)
+```
+
 #### Additional features that Arduino doesn't provide
 CFA10036 has eight PWM channels, while Arduino Uno has only six. This is a good thing who wants to use two extra channels. Right now only six channels are enabled (to maintain the compability with Arduino Uno), but who wants to enjoy an extra scoop can follow mentioned procedure.
+
 
 #### Enable extra PWMs
 
@@ -21,7 +33,7 @@ Open following file using your favourite text editor:
 ```
 Userspace-Arduino/libarduino/variants/cfa10036/variant.cpp
 ```
-Uncomment the last two lines to enable PWM6 and PWM7.
+Uncomment the last two lines and give appropriate pin name (second column) to enable PWM6 and PWM7.
 ``` cpp
 /* Array to match sysfs PWM Id againts Arduino pin no */
 PwmDescription g_APwmDescription[] = {

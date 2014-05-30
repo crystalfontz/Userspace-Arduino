@@ -1,12 +1,18 @@
 CACHE MANIFEST
-# Revision 1400156699210
+# Revision 1401458494203
 
 CACHE:
+GPIO/API and additional features.html
+GPIO/Demo.html
+GPIO/GPIO.html
+GPIO/Specifications.html
+Getting Started.html
 PWM/API & Example.html
-PWM/PWM.html
 PWM/Demo.html
+PWM/PWM.html
 PWM/specifications.html
 index.html
+SPI/API and additional features.html
 SPI/SPI.html
 SPI/Specifications.html
 overview/CFA10036.html
