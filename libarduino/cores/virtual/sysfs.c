@@ -35,6 +35,9 @@
 /* PWM period in nano seconds*/
 #define SYSFS_PWM_PERIOD_NS 20000
 
+extern uint32_t _readResolution;
+extern uint32_t _writeResolution;
+
 int sysfs_read(const char *path, const char *filename, char *value)
 {
 	FILE *fd;
@@ -70,14 +73,14 @@ int sysfs_write(const char *path, const char *filename, int value)
 void sysfs_gpio_setvalue(uint8_t pin, uint8_t value)
 {
 	char buf[MAX_BUF];
-	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "/gpio%d/", pin);
+	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "gpio%d/", pin);
 	sysfs_write(buf, "value", value);
 }
 
 int sysfs_gpio_getvalue(uint8_t pin)
 {
 	char buf[MAX_BUF], value[4];
-	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "/gpio%d/", pin);
+	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "gpio%d/", pin);
 	sysfs_read(buf, "value", value);
 	return atoi(value);
 }

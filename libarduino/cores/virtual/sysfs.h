@@ -30,7 +30,7 @@ extern "C"{
 
 #define SYSFS_BUF 0x50
 #define MAX_BUF 100
-#define SYSFS_GPIO_DIR "/sys/class/gpio"
+#define SYSFS_GPIO_DIR "/sys/class/gpio/"
 #define SYSFS_LED_DIR "/sys/class/leds"
 #define SYSFS_ADC_DIR "/sys/bus/platform/devices/80050000.lradc/iio:device0"
 #define SYSFS_PWM_ROOT	"/sys/class/pwm/pwmchip0/"
