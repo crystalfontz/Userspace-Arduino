@@ -16,4 +16,5 @@
 * [SPI](SPI/SPI.md)
     * [Specifications](SPI/Specifications.md)
     * [API and additional features](SPI/API and additional features.md)
+    * [Demo](SPI/Demo.md)
 
