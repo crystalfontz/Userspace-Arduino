@@ -202,6 +202,14 @@ extern uint32_t sizeof_g_APinDescription;
 
 #define ANALOG_PIN (0xffff)
 
+static const uint8_t A0  = 23;
+static const uint8_t A1  = 24;
+static const uint8_t A2  = 21;
+static const uint8_t A3  = 22;
+static const uint8_t A4  = 18;
+static const uint8_t A5  = 20;
+static const uint8_t A6  = 19;
+
 void load_cape(const char *capename);
 
 #ifdef __cplusplus
