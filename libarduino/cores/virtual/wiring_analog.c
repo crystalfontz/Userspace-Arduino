@@ -124,7 +124,7 @@ void analogWrite(uint32_t ulPin, uint32_t ulValue)
 			     ulValue);
 	if(ret < 0) {
 		#ifndef DEBUG
-		trace_debug("Oh! There is something wrong with PWM%d. For more details try \"make debug=y upload \" \n",ulPin);
+		trace_debug("Oh! There is something wrong with PWM%d. For more details try \"make CFG=debug upload \" \n",ulPin);
 		#endif
 	}
 	
