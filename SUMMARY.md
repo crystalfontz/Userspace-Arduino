@@ -4,7 +4,7 @@
     * [CFA10036](overview/CFA10036.md)
     * [CFA10037](overview/CFA10037.md)
 * [Getting Started](Getting Started.md)
-* [Running Custom Sketches](Running Custom Sketches.md)
+* [Running Custom Sketches](Running Custom Sketches/Running Custom Sketches.md)
 * [GPIO](GPIO/GPIO.md)
     * [Specifications](GPIO/Specifications.md)
     * [API and additional features](GPIO/API and additional features.md)
