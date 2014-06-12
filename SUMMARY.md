@@ -1,8 +1,6 @@
 # Summary
 
-* [Overview](overview/Overview.md)
-    * [CFA10036](overview/CFA10036.md)
-    * [CFA10037](overview/CFA10037.md)
+* [Hardware Overview](overview/Overview.md)
 * [Getting Started](Getting Started.md)
 * [Running Custom Sketches](Running Custom Sketches/Running Custom Sketches.md)
 * [GPIO](GPIO/GPIO.md)

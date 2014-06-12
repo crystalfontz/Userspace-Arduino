@@ -1,5 +1,46 @@
-# Userspace-Arduino for CFA10036
+# CFA10036
 
-Almost every hobbyist related to embedded field is familier with Arduino. Arduino is a simple yet powerful set of hardware and software solution for hobbyist programmer to industries developers. Nice documentation and ease of programming made it so popular among folks in embedded community!
 
-Complexity of driving external pheripherals in linux environment hinders many users in their projects. This may result in more development time and money. Quick development and ease of usage make Arduino this famous. Though when it comes to processing speed, there is no match between Arduino boards and crystalfontz's CFA10036 linux System on Machine (SOM). This project aims to deliver same experience as Arduino with much more processing power to the crystalfontz's customers. Same lines of code that instruct Arduino board to perform something, can be used by crystalfontz's CFA10036 too.
+[CFA10036](http://www.crystalfontz.com/product/CFA10036) is a linux SOM developed by [Crystalfontz America Inc](http://www.crystalfontz.com/).
+
+![cfa10036](../img/CFA100361.jpg)
+
+###Features
+
+* 454MHz Freescale i.MX283 (optionally i.MX287) processor:
+ * 16-Kbyte instruction cache, 32-Kbyte data cache
+ * 2x CAN interfaces (i.MX287 only)
+ * Four synchronous serial ports
+ * 10/100-Mbps	802.3 Ethernet MAC (1x on i.MX283, 2x on i.MX287)
+ * USB 2.0	OTG (connected to microUSB AB on CFA-10036)USB 2.0	host controller and PHY
+ * 5x UART plus one dedicated debug UART
+ * 2x I2C (OLED shares one of these)
+ * LCD, touch screen, keypad, and rotary encoder support
+ * RTC	with 32KHz crystal (requires continuous power)
+ * 4x 32-bit timers
+ * 8x PWM
+ * 5x 12-bit 428KS/s ADC channels
+ * 1x 12 bit 2MS/s ADC channel
+* 128MB(optionally 256MB) DDR2
+* MicroSD/microSDHC/microSDXC	socket: up to 64GB of nonvolatile storage
+* 91 GPIO (i.MX283) or 126 GPIO (i.MX287)
+* 6-layer	impedance-controlled PCB, gold SODIMM contacts
+* On-board micro USB AB connector
+* Only a single 5v supply needed (3.3v/1.8v/1.5v supplies internally generated)
+
+
+# CFA10037
+
+[CFA10037](http://www.crystalfontz.com/product/CFA10037.html) is used as a breakout board for prototyping.
+
+![cfa10037](../img/CFA1003671.jpg)
+
+###Features
+
+* Area to plug Arduino Uno R3 shields is provided.
+* Ethernet PHY
+* USB type A connector
+* 0.1" spaced headers to access CFA10036 pins
+
+
+
