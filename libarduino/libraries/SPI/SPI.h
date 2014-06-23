@@ -38,6 +38,7 @@ class SPIClass {
 		uint8_t mode;
 		int bitOrder;
 		uint8_t clkDiv;
+		struct spi_ioc_transfer xfer; 
 public:
 		SPIClass();
 		unsigned char transfer(byte _data);

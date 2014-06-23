@@ -39,8 +39,7 @@ extern "C"{
 *  You can use either spi, but dont forget to comment unused one!
 */
 
-#define LINUX_SPIDEV	"/dev/spidev1.0"	// SSP2
-//#define LINUX_SPIDEV	"/dev/spidev32766.1"	// SSP3
+#define LINUX_SPIDEV	"/dev/spidev32766.0"	// SSP3
 
 typedef struct _PwmDescription
 {
