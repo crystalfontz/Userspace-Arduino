@@ -1,18 +1,23 @@
 CACHE MANIFEST
-# Revision 1401221525626
+# Revision 1403862240714
 
 CACHE:
+Running Custom Sketches/Running Custom Sketches.html
 Getting Started.html
 PWM/API & Example.html
 PWM/Demo.html
 PWM/PWM.html
 PWM/specifications.html
 index.html
+GPIO/API and additional features.html
+GPIO/Demo.html
+GPIO/GPIO.html
+GPIO/Specifications.html
+SPI/API and additional features.html
+SPI/Demo.html
 SPI/SPI.html
 SPI/Specifications.html
-overview/CFA10036.html
 overview/Overview.html
-overview/CFA10037.html
 gitbook/app.js
 gitbook/fonts/anonymouspro/400.woff
 gitbook/fonts/anonymouspro/400i.woff

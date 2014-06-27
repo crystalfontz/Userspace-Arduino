@@ -3,7 +3,7 @@
     <head prefix="og: http://ogp.me/ns# book: http://ogp.me/ns/book#">
         
         <meta charset="UTF-8">
-        <title>Specifications | Userspace-Arduino for CFA10036</title>
+        <title>API and additional features | Userspace-Arduino for CFA10036</title>
 
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="robots" content="index, follow">
@@ -13,13 +13,13 @@
         <meta name="generator" content="www.gitbook.io">
 
         
-        <link rel="next" href="../PWM/API &amp; Example.html" />
+        <link rel="next" href="../GPIO/Demo.html" />
         
         
-        <link rel="prev" href="../PWM/PWM.html" />
+        <link rel="prev" href="../GPIO/Specifications.html" />
         
 
-        <meta property="og:title" content="Specifications | Userspace-Arduino for CFA10036">
+        <meta property="og:title" content="API and additional features | Userspace-Arduino for CFA10036">
         <meta property="og:site_name" content="Userspace-Arduino for CFA10036">
         <meta property="og:type" content="book">
         <meta property="og:locale" content="en_US">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="crystalfontz/Userspace-Arduino" data-level="5.1" data-basepath=".." data-revision="1403862240711">
+    <div class="book" data-github="crystalfontz/Userspace-Arduino" data-level="4.2" data-basepath=".." data-revision="1402561583719">
     <div class="book-header">
     <!-- Actions Left -->
     
@@ -108,7 +108,7 @@
             <a href="https://github.com/crystalfontz/Userspace-Arduino/issues" target="blank">Questions and Issues</a>
         </li>
         <li>
-            <a href="https://github.com/crystalfontz/Userspace-Arduino/edit/master/PWM/specifications.md" target="blank">Edit and Contribute</a>
+            <a href="https://github.com/crystalfontz/Userspace-Arduino/edit/master/GPIO/API and additional features.md" target="blank">Edit and Contribute</a>
         </li>
         <li class="divider"></li>
         
@@ -262,7 +262,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 60%;min-width: 53.333333333333336%;"></div>
+        <div class="inner" style="width: 40%;min-width: 33.333333333333336%;"></div>
     </div>
     <div class="chapters">
     
@@ -280,11 +280,11 @@
     
         <a href="../GPIO/API and additional features.html" title="API and additional features" class="chapter done " data-progress="4.2" style="left: 40%;"></a>
     
-        <a href="../GPIO/Demo.html" title="Demo" class="chapter done " data-progress="4.3" style="left: 46.666666666666664%;"></a>
+        <a href="../GPIO/Demo.html" title="Demo" class="chapter  " data-progress="4.3" style="left: 46.666666666666664%;"></a>
     
-        <a href="../PWM/PWM.html" title="PWM" class="chapter done new-chapter" data-progress="5" style="left: 53.333333333333336%;"></a>
+        <a href="../PWM/PWM.html" title="PWM" class="chapter  new-chapter" data-progress="5" style="left: 53.333333333333336%;"></a>
     
-        <a href="../PWM/specifications.html" title="Specifications" class="chapter done " data-progress="5.1" style="left: 60%;"></a>
+        <a href="../PWM/specifications.html" title="Specifications" class="chapter  " data-progress="5.1" style="left: 60%;"></a>
     
         <a href="../PWM/API &amp; Example.html" title="API and additional features" class="chapter  " data-progress="5.2" style="left: 66.66666666666667%;"></a>
     
@@ -303,72 +303,27 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_34">
+                    <section class="normal" id="section-gitbook_31">
                     
-                        <h1 id="pwm-specifications">PWM specifications</h1>
-<p>There are 8 PWM channels available on CFA10036 board.</p>
-<h3 id="pinout-table">Pinout Table</h3>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">PWM channel no</th>
-<th style="text-align:center">Arduino Uno Pin no</th>
-<th style="text-align:center">Ball no of i.MX28</th>
-<th style="text-align:center">Pin no in CFA10037</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">PWM0</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">K7</td>
-<td style="text-align:center">P3.16</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM1</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">L7</td>
-<td style="text-align:center">P3.17</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM2</td>
-<td style="text-align:center">6</td>
-<td style="text-align:center">K8</td>
-<td style="text-align:center">P3.18</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM3</td>
-<td style="text-align:center">9</td>
-<td style="text-align:center">G7</td>
-<td style="text-align:center">P3.20</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM4</td>
-<td style="text-align:center">10</td>
-<td style="text-align:center">E10</td>
-<td style="text-align:center">P3.29</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM5</td>
-<td style="text-align:center">11</td>
-<td style="text-align:center">F7</td>
-<td style="text-align:center">P3.22</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM6</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">E7</td>
-<td style="text-align:center">P3.23</td>
-</tr>
-<tr>
-<td style="text-align:center">PWM7</td>
-<td style="text-align:center">-</td>
-<td style="text-align:center">E8</td>
-<td style="text-align:center">P3.26</td>
-</tr>
-</tbody>
-</table>
-
+                        <h1 id="gpio-api">GPIO API</h1>
+<hr>
+<p><strong>syntax</strong></p>
+<ul>
+<li>pinMode (pin,mode)</li>
+<li>digitalRead (pin)</li>
+<li>digitalWrite (pin, value)</li>
+</ul>
+<p><strong>parameters</strong></p>
+<ul>
+<li><strong>pin:</strong> pin no of digital pin as per Arduino Uno board</li>
+<li><strong>mode:</strong> INPUT or OUTPUT (INPUT_PULLUP is not available)</li>
+<li><strong>value:</strong> HIGH or LOW</li>
+</ul>
+<pre><code>NOTE:
+* Do not connect more than 3.3V source to Digital pins
+* Digital pin provides maximum 3.3V output only
+* Do not use PWM and Analog pins as GPIO pins
+</code></pre>
                     
                     </section>
                 
@@ -377,10 +332,10 @@
         </div>
 
         
-        <a href="../PWM/PWM.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
+        <a href="../GPIO/Specifications.html" class="navigation navigation-prev"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../PWM/API &amp; Example.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
+        <a href="../GPIO/Demo.html" class="navigation navigation-next"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
