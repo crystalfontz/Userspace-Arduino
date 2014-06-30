@@ -15,4 +15,5 @@
     * [Specifications](SPI/Specifications.md)
     * [API and additional features](SPI/API and additional features.md)
     * [Demo](SPI/Demo.md)
+* [I2C](I2C/I2C.md)
 
