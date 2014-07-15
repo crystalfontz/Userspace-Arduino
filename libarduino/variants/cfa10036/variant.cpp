@@ -19,38 +19,7 @@
 #include "variant.h"
 #include <wordexp.h>
 #include <unistd.h>
-/*
-Arduino Uno format of pins
- * Arduino Pin| FUNCTION 1 | HEADER PIN | FUNCTION 2 | HEADER PIN | FUNCTION 3 | HEADER PIN |
- * ------------------------------------------------------------------------------------------
- *   0        |    GPIO    |            |    RX      |            |    -       |            |
- *   1        |    GPIO    |            |    TX      |            |    -       |            |
- *   2        |    GPIO    |            |    -       |            |    -       |            |
- *   3        |    GPIO    |            |    PWM     |            |    -       |            |
- *   4        |    GPIO    |            |    -       |            |    -       |            |
- *   5        |    GPIO    |            |    PWM     |            |    -       |            |
- *   6        |    GPIO    |            |    PWM     |            |    -       |            |
- *   7        |    GPIO    |            |    -       |            |    -       |            |
- *
- *   8        |    GPIO    |            |    -       |            |    -       |            |
- *   9        |    GPIO    |            |    PWM     |            |    -       |            |
- *  10        |    GPIO    |            |    PWM     |            |    SS      |            |
- *  11        |    GPIO    |            |    PWM     |            |    MOSI    |            |
- *  12        |    GPIO    |            |    -       |            |    MISO    |            |
- *  13        |    GPIO    |            |    -       |            |    SCK     |            |
- *  -         |    GND     |            |    -       |            |    -       |            |
- *  -         |    AREF    |            |            |            |    -       |            |
- * 
- *  A0        |    ADC     |            |            |            |    -       |            |
- *  A1        |    ADC     |            |            |            |    -       |            |
- *  A2        |    ADC     |            |            |            |    -       |            |
- *  A3        |    ADC     |            |            |            |    -       |            |
- *  A4        |    ADC     |            |            |            |    -       |            |
- *  A5        |    ADC     |            |            |            |    -       |            |
- * // ADC NOT PART OF ARDUINO UNO R3
- *  A6        |    ADC     |            |            |            |    -       |            |
- *  A7        |    ADC     |            |            |            |            |            |
- */
+
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -58,53 +27,17 @@ extern "C" {
 /*
  * Pins descriptions
  */
-PinDescription g_APinDescription[]=
-{
-  // The offsets can be derived from userspace pin numbers defined in the header file
-  // 0 .. 13 - Digital pins
-  // ----------------------
-  // 0/1 - UART (Serial)
-  { P9_11,   30,  UART }, // URXD P3_02
-  { P9_13,   31,  UART }, // UTXD P3_03
 
-  // 2
-  { P3_06,   102,  GPIO }, // PIN2 P3_04
-  { P9_14,   31,  PWM  }, // PWM1A P3_05
-  { P3_07,   103,  GPIO }, // PIN4 P2_19
-
-  // 5
-  { P9_16,   51,  PWM  }, // PWM1B P3_07
-  { P9_42A,   7,  PWM  }, // PWM0 P3_08
-  { P3_08,   104,  GPIO  }, // PWM2A P3_09
-
-  //8
-  { P9_19,   13,  I2C  }, // I2C2_SCL P3_10
-  { P9_20,   12,  I2C  }, // I2C2_SDA P3_11
-
-  // 10
-  { P3_09,    105,  GPIO  }, // SPI0_CSO P3_12
-  { P3_12,    108,  GPIO  }, // MOSI P3_13
-  { P9_21,    3,  _SPI   }, // MISO P3_14
-  { P3_13,    109,  GPIO  }, // P3_15
-
-  // 14 .. 17 - USR LEDs
-  { USR0,    53,  LED  },
-  { USR1,    86,  LED  },
-  { USR2,    87,  LED  },
-  { USR3,    88,  LED  },
-
-  // 18 .. 24 - Analog pins
-  // ----------------------
-  { AIN4,  ANALOG_PIN,  ANALOG, 4 },
-  { AIN6,  ANALOG_PIN,  ANALOG, 6 },
-  { AIN5,  ANALOG_PIN,  ANALOG, 5 },
-  { AIN2,  ANALOG_PIN,  ANALOG, 2 },
-  { AIN3,  ANALOG_PIN,  ANALOG, 3 },
-  { AIN0,  ANALOG_PIN,  ANALOG, 0 },
-  { AIN1,  ANALOG_PIN,  ANALOG, 1 }
-} ;
-
-uint32_t sizeof_g_APinDescription;
+GPIODescription g_AGPIODescription[] = {
+	{ 102 , 2},
+	{ 103 , 4},
+	{ 104 , 7},
+	{ 105 , 10},
+	{ 108 , 11},
+	{ 109 , 13},
+	
+};
+uint32_t sizeof_g_AGPIODescription;
 /* Array to match sysfs PWM Id againts Arduino pin no */
 PwmDescription g_APwmDescription[] = {
 	{ 0,	3,	-1,	-1 },
@@ -160,7 +93,7 @@ extern "C" {
 
 void init( void )
 {
- sizeof_g_APinDescription = sizeof(g_APinDescription)/sizeof(struct _PinDescription); 
+ sizeof_g_AGPIODescription = sizeof(g_AGPIODescription)/sizeof(struct _GPIODescription); 
  pinInit();
  sizeof_g_APwmDescription = sizeof(g_APwmDescription)/sizeof(struct _PwmDescription);
  pwmInit();

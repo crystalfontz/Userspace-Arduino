@@ -87,8 +87,8 @@ static int pin2pwmhandle_duty(uint8_t pin)
 uint32_t analogRead(uint32_t pin)
 {
 	uint32_t value;
-	if (g_APinDescription[pin].pinType == ANALOG) {
-		value = sysfs_adc_getvalue(g_APinDescription[pin].analogChannel);
+	if (isAnalog(pin)) {
+		value = sysfs_adc_getvalue(pin);
 		/* Scale 12 bit ADC value as per _readResolution */
 		if (_readResolution < 12) {
 			value = (value << _readResolution) - value;
