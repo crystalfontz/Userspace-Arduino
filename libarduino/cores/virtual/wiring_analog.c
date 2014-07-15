@@ -98,9 +98,13 @@ uint32_t analogRead(uint32_t pin)
 			value = value << (_readResolution - 12);
 			return value;
 		}
-	} else {
-		return 0;
-	}
+	} else 
+	#ifdef DEBUG
+            trace_debug("Analog not available on pin%u", pin);
+	#endif
+  
+	return 0;
+	
 }
 
 void analogWrite(uint32_t ulPin, uint32_t ulValue)
@@ -110,7 +114,7 @@ void analogWrite(uint32_t ulPin, uint32_t ulValue)
 	if (! digitalPinHasPWM(ulPin))
 	{	
 		#ifdef DEBUG
-		trace_debug("pin%u has no pwm", ulPin);
+		    trace_debug("pin%u has no pwm", ulPin);
 		#endif
 		return;
 	}
@@ -124,7 +128,7 @@ void analogWrite(uint32_t ulPin, uint32_t ulValue)
 			     ulValue);
 	if(ret < 0) {
 		#ifndef DEBUG
-		trace_debug("Oh! There is something wrong with PWM%d. For more details try \"make CFG=debug upload \" \n",ulPin);
+		    trace_debug("Oh! There is something wrong with PWM%d. For more details try \"make CFG=debug upload \" \n",ulPin);
 		#endif
 	}
 	

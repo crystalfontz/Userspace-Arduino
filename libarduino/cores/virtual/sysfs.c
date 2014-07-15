@@ -114,7 +114,9 @@ int gpio_export(uint32_t gpio_pin)
 	
 	if (NULL == (fd = fopen(fs_path, "ab")))
 	{
-		//print("GPIO error);
+		#ifdef DEBUG
+	        trace_debug("Can not open %s of GPIO%d\n", fs_path, gpio_pin);  
+    	#endif
 		return -1;
 	}
 	rewind(fd);
@@ -132,14 +134,22 @@ int gpio_unexport(uint32_t gpio_pin)
 	FILE *fd;
 	fd = fopen("/sys/class/gpio/unexport", "w");
 	if (fd == NULL) {
-		fprintf(stderr, "Pin %d: ", gpio_pin);
-		perror("/gpio/unexport");
+	    #ifdef DEBUG
+	        trace_debug("Can not open %s for GPIO%d\n","/sys/class/gpio/unexport", gpio_pin);  
+	    #else
+		    fprintf(stderr, "Pin %d: ", gpio_pin);
+	    	perror("/gpio/unexport");
+		#endif
 		return -1;
 	}
 	fprintf(fd, "%d", gpio_pin);
 	if (fclose(fd) != 0) {
-		fprintf(stderr, "Pin %d: ", gpio_pin);
-		perror("/gpio/unexport");
+		#ifdef DEBUG
+		    trace_debug("Can not close %s for GPIO%d\n","/sys/class/gpio/unexport", gpio_pin);  
+		#else		
+		    fprintf(stderr, "Pin %d: ", gpio_pin);
+		    perror("/gpio/unexport");
+		#endif
 	}
 	return gpio_pin;
 }
@@ -151,14 +161,22 @@ int gpio_setdirection(uint32_t gpio_pin, const char *direction)
 	snprintf(buf, sizeof(buf), "/sys/class/gpio/gpio%d/direction", gpio_pin);
 	fd = fopen(buf, "w");
 	if (fd == NULL) {
-		fprintf(stderr, "Pin %d: ", gpio_pin);
-		perror(buf);
+	    #ifdef DEBUG
+	        trace_debug("Can not open %s for GPIO%d to sysfs\n", buf, gpio_pin);  
+	    #else
+    		fprintf(stderr, "Pin %d: ", gpio_pin);
+	    	perror(buf);
+		#endif
 		return -1;
 	}
 	fprintf(fd, "%s", direction);
 	if (fclose(fd) != 0) {
-		fprintf(stderr, "Pin %d: ", gpio_pin);
-		perror(buf);
+	    #ifdef DEBUG
+	        trace_debug("Can not close %s for GPIO%d to sysfs\n", buf, gpio_pin);  
+	    #else
+		    fprintf(stderr, "Pin %d: ", gpio_pin);
+		    perror(buf);
+		#endif
 	}
 	return gpio_pin;
 }
