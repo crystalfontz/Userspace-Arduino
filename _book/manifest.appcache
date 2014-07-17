@@ -1,30 +1,24 @@
 CACHE MANIFEST
-# Revision 1401458494203
+# Revision 1405597716007
 
 CACHE:
-GPIO/API and additional features.html
-GPIO/Demo.html
-GPIO/GPIO.html
-GPIO/Specifications.html
-Getting Started.html
-PWM/API & Example.html
-PWM/Demo.html
-PWM/PWM.html
-PWM/specifications.html
 index.html
-SPI/API and additional features.html
-SPI/SPI.html
-SPI/Specifications.html
-overview/CFA10036.html
-overview/CFA10037.html
-overview/Overview.html
+getting_started/README.html
+gpio/README.html
+gpio/api_and_additional_features.html
+gpio/demo.html
+gpio/specifications.html
+hardware_overview/README.html
+pwm/README.html
+pwm/api_and_additional_features.html
+pwm/demo.html
+pwm/specifications.html
+running_custom_sketches/README.html
+spi/README.html
+spi/api_and_additional_featuers.html
+spi/demo.html
+spi/specifications.html
 gitbook/app.js
-gitbook/fonts/anonymouspro/400.woff
-gitbook/fonts/anonymouspro/400i.woff
-gitbook/fonts/anonymouspro/700.woff
-gitbook/fonts/anonymouspro/700i.woff
-gitbook/fonts/ebgaramond/400.woff
-gitbook/fonts/ebgaramond/400i.woff
 gitbook/fonts/fontawesome/FontAwesome.otf
 gitbook/fonts/fontawesome/fontawesome-webfont.eot
 gitbook/fonts/fontawesome/fontawesome-webfont.svg
@@ -54,7 +48,6 @@ gitbook/jsrepl/sandbox.html
 gitbook/jsrepl/sandbox.js
 gitbook/print.css
 gitbook/style.css
-gitbook/plugins/gitbook-plugin-mixpanel/plugin.js
 gitbook/plugins/gitbook-plugin-mathjax/plugin.js
 
 NETWORK:
