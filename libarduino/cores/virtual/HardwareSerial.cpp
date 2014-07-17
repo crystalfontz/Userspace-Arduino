@@ -42,7 +42,7 @@ extern "C"{
 }
 #endif
 
-#define AUART4 "/dev/ttyAPP4"
+#define AUART4 "/dev/ttyAPP3"
 #define SERIAL_BUFFER_SIZE 1024
 
 volatile int w_flag = 0;
