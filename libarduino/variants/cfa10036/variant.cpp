@@ -34,7 +34,7 @@ GPIODescription g_AGPIODescription[] = {
 	{ 104 , 7},
 	{ 105 , 10},
 	{ 108 , 11},
-	{ 109 , 13},
+	{ 109 , 13}
 	
 };
 
@@ -47,7 +47,7 @@ PwmDescription g_APwmDescription[] = {
 	{ 2,	6,	-1,	-1 },
 	{ 3,	9,	-1,	-1 },
 	{ 4,	10,	-1,	-1 },
-	{ 5,	11,	-1,	-1 },
+	{ 5,	11,	-1,	-1 }
 
 /* Extra PWM pins
 	{ 6,	,	-1,	-1 },
@@ -78,7 +78,7 @@ PinState g_APinState[]=
 	{ 0,		1 },	/* 16		*/
 	{ 0,		1 },	/* 17		*/
 	{ 0,		1 },	/* 18		*/
-	{ 0,		1 },	/* 19		*/
+	{ 0,		1 } 	/* 19		*/
 };
 
 uint32_t sizeof_g_APinState = sizeof(g_APinState)/sizeof(struct _PinState);
