@@ -44,13 +44,25 @@ int sysfs_read(const char *path, const char *filename, char *value)
 	char buf[MAX_BUF];
 	snprintf(buf, sizeof(buf), "%s%s", path, filename);
 	fd = fopen(buf, "r");
+	
 	if (fd == NULL) {
+		#ifdef DEBUG
+		trace_debug("[sysfs_read] Can not Open ' %s '\n", buf);
+		#else
 		perror(buf);
+		#endif
 		return -1;
 	}
+	
 	fscanf(fd, "%s", value);
-	if (fclose(fd) != 0)
+	
+	if (fclose(fd) != 0) {
+		#ifdef DEBUG
+		trace_debug("[sysfs_read] Can not close ' %s '\n", buf);
+		#else
 		perror(buf);
+		#endif
+	}	
 	return 0;
 }
 
@@ -60,13 +72,24 @@ int sysfs_write(const char *path, const char *filename, int value)
 	char buf[MAX_BUF];
 	snprintf(buf, sizeof(buf), "%s%s", path, filename);
 	fd = fopen(buf, "w");
+	
 	if (fd == NULL) {
+		#ifdef DEBUG
+		trace_debug("[sysfs_write] Can not Open ' %s '\n", buf);
+		#else
 		perror(buf);
+		#endif
 		return -1;
 	}
+	
 	fprintf(fd, "%d", value);
-	if (fclose(fd) != 0)
+	if (fclose(fd) != 0) {
+		#ifdef DEBUG
+		trace_debug("[sysfs_write] Can not close ' %s '\n", buf);
+		#else
 		perror(buf);
+		#endif
+	}	
 	return 0;
 }
 
@@ -75,6 +98,7 @@ void sysfs_gpio_setvalue(uint8_t pin, uint8_t value)
 	char buf[MAX_BUF];
 	snprintf(buf, sizeof(buf), SYSFS_GPIO_DIR "gpio%d/", pin);
 	sysfs_write(buf, "value", value);
+	
 }
 
 int sysfs_gpio_getvalue(uint8_t pin)
@@ -98,13 +122,6 @@ uint32_t sysfs_adc_getvalue(uint32_t channel)
 	return atol(value);
 }
 
-void sysfs_led_setvalue(uint8_t led, uint8_t value)
-{
-	char buf[MAX_BUF];
-	snprintf(buf, sizeof(buf), SYSFS_LED_DIR "/beaglebone:green:usr%d/", led);
-	sysfs_write(buf, "brightness", value);
-}
-
 int gpio_export(uint32_t gpio_pin)
 {
 	FILE *fd = NULL;
@@ -112,11 +129,10 @@ int gpio_export(uint32_t gpio_pin)
 	char export_value[16] = "";
 	char fs_path[SYSFS_BUF] = SYSFS_GPIO_DIR "export";
 	
-	if (NULL == (fd = fopen(fs_path, "ab")))
-	{
+	if (NULL == (fd = fopen(fs_path, "ab"))) {
 		#ifdef DEBUG
-	        trace_debug("Can not open %s of GPIO%d\n", fs_path, gpio_pin);  
-    	#endif
+		trace_debug("[gpio_export] Can not open ' %s ' of GPIO%d\n", fs_path, gpio_pin);  
+		#endif
 		return -1;
 	}
 	rewind(fd);
@@ -134,21 +150,21 @@ int gpio_unexport(uint32_t gpio_pin)
 	FILE *fd;
 	fd = fopen("/sys/class/gpio/unexport", "w");
 	if (fd == NULL) {
-	    #ifdef DEBUG
-	        trace_debug("Can not open %s for GPIO%d\n","/sys/class/gpio/unexport", gpio_pin);  
-	    #else
-		    fprintf(stderr, "Pin %d: ", gpio_pin);
-	    	perror("/gpio/unexport");
+		#ifdef DEBUG
+		trace_debug("[gpio_unexport] Can not open ' %s ' for GPIO%d\n","/sys/class/gpio/unexport\n", gpio_pin);  
+		#else
+		fprintf(stderr, "Pin %d: ", gpio_pin);
+		perror("/gpio/unexport");
 		#endif
 		return -1;
 	}
 	fprintf(fd, "%d", gpio_pin);
 	if (fclose(fd) != 0) {
 		#ifdef DEBUG
-		    trace_debug("Can not close %s for GPIO%d\n","/sys/class/gpio/unexport", gpio_pin);  
+		trace_debug("[gpio_unexport] Can not close ' %s ' for GPIO%d\n","/sys/class/gpio/unexport\n", gpio_pin);  
 		#else		
-		    fprintf(stderr, "Pin %d: ", gpio_pin);
-		    perror("/gpio/unexport");
+		fprintf(stderr, "Pin %d: ", gpio_pin);
+		perror("/gpio/unexport");
 		#endif
 	}
 	return gpio_pin;
@@ -161,21 +177,21 @@ int gpio_setdirection(uint32_t gpio_pin, const char *direction)
 	snprintf(buf, sizeof(buf), "/sys/class/gpio/gpio%d/direction", gpio_pin);
 	fd = fopen(buf, "w");
 	if (fd == NULL) {
-	    #ifdef DEBUG
-	        trace_debug("Can not open %s for GPIO%d to sysfs\n", buf, gpio_pin);  
-	    #else
-    		fprintf(stderr, "Pin %d: ", gpio_pin);
-	    	perror(buf);
+		#ifdef DEBUG
+		trace_debug("[gpio_setdirection] Can not open %s for GPIO%d\n", buf, gpio_pin);  
+		#else
+		fprintf(stderr, "Pin %d: ", gpio_pin);
+		perror(buf);
 		#endif
 		return -1;
 	}
 	fprintf(fd, "%s", direction);
 	if (fclose(fd) != 0) {
-	    #ifdef DEBUG
-	        trace_debug("Can not close %s for GPIO%d to sysfs\n", buf, gpio_pin);  
-	    #else
-		    fprintf(stderr, "Pin %d: ", gpio_pin);
-		    perror(buf);
+		#ifdef DEBUG
+		trace_debug("[gpio_setdirection] Can not close %s for GPIO%d\n", buf, gpio_pin);  
+		#else
+		fprintf(stderr, "Pin %d: ", gpio_pin);
+		perror(buf);
 		#endif
 	}
 	return gpio_pin;
@@ -202,7 +218,7 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 
 	if (NULL == (fp = fopen(fs_path, "ab"))) {
 		#ifdef DEBUG
-			trace_debug("Unable to open: %s \n",fs_path);
+		trace_debug("[sysfsPwmExport] Can not open ' %s '\n",fs_path);
 		#endif
 		return -1;
 	}
@@ -218,7 +234,7 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 	snprintf(fs_path, sizeof(fs_path), SYSFS_PWM_ROOT "pwm%u/period", pwm);
 	if (NULL == (fp = fopen(fs_path, "ab"))) {
 		#ifdef DEBUG
-			trace_debug("Unable to open: %s \n",fs_path);
+		trace_debug("[sysfsPwmExport] Can not open ' %s ' \n",fs_path);
 		#endif
 		return -1;
 	}
@@ -235,7 +251,7 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 	ret = open(fs_path,  O_RDWR);
 	if (ret < 0) {
 		#ifdef DEBUG
-			trace_debug("Unable to open: %s \n", fs_path);
+		trace_debug("[sysfsPwmExport] Can not open ' %s '\n", fs_path);
 		#endif
 		return ret;
 	}
@@ -248,7 +264,7 @@ int sysfsPwmExport(uint32_t pwm, int *handle_enable, int *handle_duty)
 	ret = open(fs_path,  O_RDWR);
 	if (ret < 0) {
 		#ifdef DEBUG
-			trace_debug("Unable to open: %s \n", fs_path);
+		trace_debug("[sysfsPwmExport] Can not open ' %s '\n", fs_path);
 		#endif
 		return ret;
 	}
@@ -289,7 +305,7 @@ int sysfsPwmEnable(int handle_enable, int handle_duty, unsigned int ulValue)
 	ret = write(handle_duty, &value, sizeof(value));
 	if (sizeof(value) != ret) {
 		#ifdef DEBUG
-			trace_debug("Can not write %d to duty_cycle \n", ulValue);
+		trace_debug("[sysfsPwmEnable] Can not write %d to duty_cycle \n", ulValue);
 		#endif
 		return -1;
 		
@@ -299,7 +315,7 @@ int sysfsPwmEnable(int handle_enable, int handle_duty, unsigned int ulValue)
 	ret = write(handle_enable, &enable, sizeof(enable));
 	if (sizeof(enable) != ret) {
 		#ifdef DEBUG
-			trace_debug("Can not write %s to enable", enable);
+		trace_debug("[sysfsPwmEnable] Can not write %s to enable\n", enable);
 		#endif
 		return -1;
 	}

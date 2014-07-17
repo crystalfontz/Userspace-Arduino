@@ -50,7 +50,7 @@ extern uint32_t sizeof_g_AGPIODescription;
 void analogReadResolution(uint32_t res)
 {
 	#ifdef DEBUG
-		trace_debug("Analog pin read resolution is set from %d to %d \n", _readResolution, res);
+	trace_debug("[analogReadResolution] Read resolution is set to %d from %d \n", res, _readResolution);
 	#endif
 	_readResolution = res;
 }
@@ -58,7 +58,7 @@ void analogReadResolution(uint32_t res)
 void analogWriteResolution(uint32_t res)
 {	
 	#ifdef DEBUG
-		trace_debug("Analog pin write resolution is set from %d to %d \n", _writeResolution, res);
+	trace_debug("[analogWriteResolution] Write resolution is to from %d from %d \n", res, _writeResolution);
 	#endif
 	
 	_writeResolution = res;
@@ -101,14 +101,21 @@ uint32_t analogRead(uint32_t pin)
 		if (_readResolution < 12) {
 			value = (value << _readResolution) - value;
 			value = value / 4095;
+			#ifdef DEBUG
+			trace_debug("[analogRead] value of pin %d is %d\n", pin, value);
+			#endif
 			return value;
 		} else {
 			value = value << (_readResolution - 12);
+			#ifdef DEBUG
+			trace_debug("[analogRead] value of pin %d is %d\n", pin, value);
+			#endif
 			return value;
 		}
-	} else 
+	} 
 	#ifdef DEBUG
-            trace_debug("Analog not available on pin%u", pin);
+	else
+		trace_debug("[analogRead] Pin%u is not Analog", pin);
 	#endif
   
 	return 0;
@@ -122,21 +129,21 @@ void analogWrite(uint32_t ulPin, uint32_t ulValue)
 	if (! digitalPinHasPWM(ulPin))
 	{	
 		#ifdef DEBUG
-		    trace_debug("pin%u has no pwm", ulPin);
+		trace_debug("[analogWrite] pin %d has no pwm\n", ulPin);
 		#endif
 		return;
 	}
 	
 	#ifdef DEBUG
-		trace_debug("Writing %d to PWM%d \n",ulValue, ulPin);	
+	trace_debug("[analogWrite] Writing %d to PWM%d \n",ulValue, ulPin);	
 	#endif
 	
 	ret = sysfsPwmEnable(pin2pwmhandle_enable(ulPin),
-			     pin2pwmhandle_duty(ulPin),
-			     ulValue);
+				 pin2pwmhandle_duty(ulPin),
+				 ulValue);
 	if(ret < 0) {
 		#ifndef DEBUG
-		    trace_debug("Oh! There is something wrong with PWM%d. For more details try \"make CFG=debug upload \" \n",ulPin);
+		trace_debug("Something wrong with PWM%d. For more details try \"make CFG=debug upload \" \n",ulPin);
 		#endif
 	}
 	
@@ -152,23 +159,23 @@ void pwmInit(void)
 	int ret = 0;
 
 	#ifdef DEBUG
-		trace_debug("Exporting PWM... \n");
+	trace_debug("[pwmInit] Exporting PWM... \n");
 	#endif
 	
 	for (i = 0; i < sizeof_g_APwmDescription; i++) {
 	
 		#ifdef DEBUG
-			trace_debug("Exporting PWM %d \n",i);
+		trace_debug("[pwmInit] Exporting PWM %d \n",i);
 		#endif
 		
 		ret = sysfsPwmExport(g_APwmDescription[i].ulPWMId,
-				     &g_APwmDescription[i].iHandleEnable,
-				     &g_APwmDescription[i].iHandleDuty);
+					 &g_APwmDescription[i].iHandleEnable,
+					 &g_APwmDescription[i].iHandleDuty);
 		if (ret < 0) {
 			#ifndef DEBUG
-			trace_debug("unable to open pwm%d \n",
-				    g_APwmDescription[i].ulPWMId);
-			#endif	    
+			trace_debug("[pwmInit] unable to open pwm%d \n",
+					g_APwmDescription[i].ulPWMId);
+			#endif		
 		}
 		
 		/* Disable PWM if necessary in test
@@ -177,7 +184,7 @@ void pwmInit(void)
 		if (ret < 0) {
 			#ifndef DEBUG
 			printf("unable to disable pwm%d \n",
-				    g_APwmDescription[i].ulPWMId);
+					g_APwmDescription[i].ulPWMId);
 			#endif
 		}*/
 

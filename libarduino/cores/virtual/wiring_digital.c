@@ -53,56 +53,56 @@ int pin2gpiohandle(uint8_t pin)
 
 void pinMode(uint8_t pin, uint8_t mode)
 {
-	    
+	
 	if (isDigital(pin)) {
 		if (mode == INPUT) {
 			gpio_setdirection(pin2gpiohandle(pin), "in");
-		#ifdef DEBUG
-            trace_debug("GPIO: configuring pin %d as INPUT \n", pin);
-		#endif
+			#ifdef DEBUG
+			trace_debug("[pinMode] configuring pin %d as INPUT \n", pin);
+			#endif
 		}
 		else {
 			gpio_setdirection(pin2gpiohandle(pin), "out");
-		#ifdef DEBUG	
-			trace_debug("GPIO: configuring pin %d as OUTPUT \n", pin);
-		#endif
+			#ifdef DEBUG
+			trace_debug("[pinMode] configuring pin %d as OUTPUT \n", pin);
+			#endif
 		}
 	}
+	#ifdef DEBUG
 	else
-        #ifdef DEBUG
-	        trace_debug("digital pin%u is not defined", pin);
-        #endif
+		trace_debug("[pinMode] pin %d is not Digital\n", pin);
+	#endif
 	return;
 }
 
 void digitalWrite(uint8_t pin, uint8_t val)
 {
-    #ifdef DEBUG
-        trace_debug("GPIO: writing %d to pin %d\n", val, pin);
-    #endif
+	#ifdef DEBUG
+	trace_debug("[digitalWrite] writing %d to pin %d\n", val, pin);
+	#endif
 	if (isDigital(pin))
 		sysfs_gpio_setvalue(pin2gpiohandle(pin), val);
+	#ifdef DEBUG
 	else
-        #ifdef DEBUG
-	        trace_debug("digital pin%u is not defined", pin);
-        #endif
+	trace_debug("[digitalWrite] pin %d is not Digital\n", pin);
+	#endif
 	return;
 }
 
 int digitalRead(uint8_t pin)
 {
-    uint8_t result = 0;
-    if (isDigital(pin)) {
-	    result = sysfs_gpio_getvalue(pin2gpiohandle(pin));
-        #ifdef DEBUG
-            trace_debug("GPIO: Input of pin %d is %d\n", pin, result);
+	uint8_t result = 0;
+	if (isDigital(pin)) {
+		result = sysfs_gpio_getvalue(pin2gpiohandle(pin));
+		#ifdef DEBUG
+		trace_debug("[digitalRead] Value of pin %d is %d\n", pin, result);
+		#endif
 		return result;
-        #endif
 	}	
-	else
 	#ifdef DEBUG
-		trace_debug("digital pin%u is not defined", pin);
-    #endif
+	else
+		trace_debug("[digitalRead] pin %d is not Digital\n", pin);
+	#endif
 	return 0;
 }
 
@@ -111,13 +111,13 @@ void pinInit(void)
 	uint16_t i ;
 	
 	#ifdef DEBUG
-	    trace_debug("Exporting GPIOs...\n");  
+	trace_debug("[pinInit] Exporting GPIOs...\n");  
 	#endif
 	for (i = 0; i < sizeof_g_AGPIODescription; i++) {
-		    gpio_export(g_AGPIODescription[i].ulGPIOId);
-		    #ifdef DEBUG
-	 	        trace_debug("Exporting GPIO%d\n", g_AGPIODescription[i].ulGPIOId);      
-	 	    #endif
-	 	}    
+		gpio_export(g_AGPIODescription[i].ulGPIOId);
+		#ifdef DEBUG
+		trace_debug("[pinInit] Exporting GPIO%d\n", g_AGPIODescription[i].ulGPIOId);
+		#endif
+	}
 }
 
