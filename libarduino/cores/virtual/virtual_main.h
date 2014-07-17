@@ -7,7 +7,6 @@
 #include <inttypes.h>
 #include "sysfs.h"
 #include "i2c.h"
-
 #ifdef __cplusplus
 extern "C"{
 #endif
@@ -17,10 +16,11 @@ extern struct timespec prog_start_time;
 #ifdef __cplusplus
 }
 #include "HardwareSerial.h"
+#include "variant.h"
 #include "WMath.h"
 #endif
 
-
+#include "variant.h"
 #include "wiring.h"
 #include "wiring_digital.h"
 #include "wiring_analog.h"

@@ -82,7 +82,6 @@ typedef unsigned int word;
 typedef uint8_t boolean;
 typedef uint8_t byte;
 
-void init(void);
 
 unsigned long millis(void);
 unsigned long micros(void);

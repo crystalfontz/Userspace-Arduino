@@ -78,7 +78,7 @@ static const uint8_t A4  = 4;
 static const uint8_t A5  = 5;
 static const uint8_t A6  = 6;
 
-void load_cape(const char *capename);
+void init(void);
 
 #ifdef __cplusplus
 }
