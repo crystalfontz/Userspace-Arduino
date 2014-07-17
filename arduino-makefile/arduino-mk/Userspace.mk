@@ -372,10 +372,9 @@ endif
 ########################################################################
 # Determine ARDUINO_LIBS automatically
 ARDUINO_LIBS	+=	$(ARDUINO_DIR)/libarduino/libraries/SPI
-#ARDUINO_LIBS	+=	$(ARDUINO_DIR)/libarduino/libraries/Wire
+ARDUINO_LIBS	+=	$(ARDUINO_DIR)/libarduino/libraries/Wire
 ARDUINO_LIBS	+=	$(ARDUINO_DIR)/libarduino/libraries/Stepper
 ARDUINO_LIBS	+=  $(ARDUINO_DIR)/libarduino/libraries/LiquidCrystal
-#ARDUINO_LIBS	+=  $(ARDUINO_DIR)/libarduino/libraries/CapacitiveSensor
 
 ifndef ARDUINO_LIBS
     # automatically determine included libraries
