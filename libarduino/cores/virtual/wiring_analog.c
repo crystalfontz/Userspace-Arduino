@@ -39,6 +39,14 @@ extern "C" {
 uint32_t _readResolution = 10;
 uint32_t _writeResolution = 8;
 
+extern PwmDescription g_APwmDescription[];
+extern GPIODescription g_AGPIODescription[];
+extern uint32_t sizeof_g_APwmDescription;
+extern PinState g_APinState[];
+extern uint32_t sizeof_g_APinState;
+extern uint32_t sizeof_g_APinDescription;
+extern uint32_t sizeof_g_AGPIODescription;
+
 void analogReadResolution(uint32_t res)
 {
 	#ifdef DEBUG

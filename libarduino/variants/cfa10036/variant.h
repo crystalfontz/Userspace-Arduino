@@ -61,13 +61,6 @@ typedef struct _PinState
 	uint32_t	uCurrentInput;	/* True if currently input */
 } PinState;
 
-extern PwmDescription g_APwmDescription[];
-extern GPIODescription g_AGPIODescription[];
-extern uint32_t sizeof_g_APwmDescription;
-extern PinState g_APinState[];
-extern uint32_t sizeof_g_APinState;
-extern uint32_t sizeof_g_APinDescription;
-extern uint32_t sizeof_g_AGPIODescription;
 /*----------------------------------------------------------------------------
  *        Pins
  *----------------------------------------------------------------------------*/

@@ -37,7 +37,9 @@ GPIODescription g_AGPIODescription[] = {
 	{ 109 , 13},
 	
 };
-uint32_t sizeof_g_AGPIODescription;
+
+uint32_t sizeof_g_AGPIODescription = sizeof(g_AGPIODescription)/sizeof(struct _GPIODescription);
+
 /* Array to match sysfs PWM Id againts Arduino pin no */
 PwmDescription g_APwmDescription[] = {
 	{ 0,	3,	-1,	-1 },
@@ -52,7 +54,7 @@ PwmDescription g_APwmDescription[] = {
 	{ 7,	,	-1,	-1 },*/
 };
 
-uint32_t sizeof_g_APwmDescription;
+uint32_t sizeof_g_APwmDescription = sizeof(g_APwmDescription)/sizeof(struct _PwmDescription);
 
 PinState g_APinState[]=
 {
@@ -78,7 +80,8 @@ PinState g_APinState[]=
 	{ 0,		1 },	/* 18		*/
 	{ 0,		1 },	/* 19		*/
 };
-uint32_t sizeof_g_APinState;
+
+uint32_t sizeof_g_APinState = sizeof(g_APinState)/sizeof(struct _PinState);
 #ifdef __cplusplus
 }
 #endif
@@ -93,11 +96,8 @@ extern "C" {
 
 void init( void )
 {
- sizeof_g_AGPIODescription = sizeof(g_AGPIODescription)/sizeof(struct _GPIODescription); 
  pinInit();
- sizeof_g_APwmDescription = sizeof(g_APwmDescription)/sizeof(struct _PwmDescription);
  pwmInit();
- sizeof_g_APinState = sizeof(g_APinState)/sizeof(struct _PinState);
 }
 
 #ifdef __cplusplus

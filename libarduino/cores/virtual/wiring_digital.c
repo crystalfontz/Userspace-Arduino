@@ -29,6 +29,14 @@
 #include "pins_linux.h"
 #include "debug.h"
 
+extern PwmDescription g_APwmDescription[];
+extern GPIODescription g_AGPIODescription[];
+extern uint32_t sizeof_g_APwmDescription;
+extern PinState g_APinState[];
+extern uint32_t sizeof_g_APinState;
+extern uint32_t sizeof_g_APinDescription;
+extern uint32_t sizeof_g_AGPIODescription;
+
 int pin2gpiohandle(uint8_t pin)
 {
 	uint32_t i;
