@@ -24,6 +24,8 @@
 #include <string.h>
 #include <ctype.h>
 
+#define F(string_literal) (string_literal)
+
 class String
 {
   public:
