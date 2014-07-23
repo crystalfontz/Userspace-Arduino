@@ -17,18 +17,26 @@ Use a terminal (Ctrl+Alt+t on Ubuntu) to copy-paste the above command.
 
 **Note: You've to use Ctrl+Shift+v to paste in a Ubuntu terminal.**
 #### Installing the toolchain
+1. Get the CodeSourcery toolchain for ARM by executing this in the terminal:
+```
+    wget -c https://sourcery.mentor.com/public/gnu_toolchain/arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.bin
+```
+*Note: If you're **not** using a 64-bit system, skip to step 3*
+2. Execute in a terminal (for 64-bit only):
+```
+sudo dpkg --add-architecture i386
+sudo apt-get update
+sudo apt-get install libgtk2.0-0:i386 libxtst6:i386 gtk2-engines-murrine:i386 \
+lib32stdc++6 libxt6:i386 libdbus-glib-1-2:i386 libasound2:i386
+```
 
-1. Get the CodeSourcery toolchain for ARM from https://sourcery.mentor.com/GNUToolchain/release2450
-2. Download the "Lite Edition" of the toolchain. You will need to register your email with Mentor Graphics first, after which a Download Link will be mailed to you.
-3. Once you get the to the software selection page from the Download Link, select *Sourcery CodeBench Lite 2013.05-24* and then select the IA32 GNU/Linux Installer.
-4. Once the download is complete, note the path of the binary. You'll need it later.
-5. Execute in a terminal:
+3. Now:
 ```
-    sudo dpkg-reconfigure -plow dash
+    chmod +x arm-2013.05-24-arm-none-linux-gnueabi.bin
+ ./arm-2013.05-24-arm-none-linux-gnueabi.bin
 ```
-6. Choose "No" if you're asked about setting "dash" as the default shell.
-7. Execute the binary from the path you noted earlier to begin installation.
-8. Congratulations! You're ready to start developing.
+4. When asked, choose a typical install.
+5. Logout and log back in. Congratulations! You're ready to start developing.
 
 #### Get the Userspace-Arduino repository
 
