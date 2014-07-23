@@ -3,6 +3,7 @@
 * [Hardware Overview](hardware_overview/README.md)
 * [Getting Started](getting_started/README.md)
 * [Running Custom Sketches](running_custom_sketches/README.md)
+* [Exceptions & Known Issues](known_issues/README.md)
 * [GPIO](gpio/README.md)
    * [Specifications](gpio/specifications.md)
    * [API and additional features](gpio/api_and_additional_features.md)
@@ -15,4 +16,7 @@
    * [Specifications](spi/specifications.md)
    * [API and additional featuers](spi/api_and_additional_featuers.md)
    * [Demo](spi/demo.md)
+* [I2C (wire)](i2c/README.md)
+   * [Specifications](i2c/specifications.md)
+* [Serial](serial/README.md)
 
