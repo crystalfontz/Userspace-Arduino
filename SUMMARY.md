@@ -3,6 +3,7 @@
 * [Hardware Overview](hardware_overview/README.md)
 * [Getting Started](getting_started/README.md)
 * [Running Custom Sketches](running_custom_sketches/README.md)
+* [Debugging an Application](debugging_an_application/README.md)
 * [Exceptions & Known Issues](known_issues/README.md)
 * [GPIO](gpio/README.md)
    * [Specifications](gpio/specifications.md)
