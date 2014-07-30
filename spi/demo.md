@@ -57,4 +57,4 @@ void loop()
 
 Output:
 
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/BN8iIRk0yd4/0.jpg)](https://www.youtube.com/watch?v=BN8iIRk0yd4)
+Output of above program is available [here](https://www.youtube.com/watch?v=BN8iIRk0yd4)
