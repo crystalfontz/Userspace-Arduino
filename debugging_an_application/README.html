@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Getting Started | Userspace-Arduino for CFA10036</title>
+        <title>Debugging an Application | Userspace-Arduino for CFA10036</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -19,10 +19,10 @@
     <meta name="author" content="crystalfontz">
     
     
-    <link rel="next" href="../running_custom_sketches/README.html" />
+    <link rel="next" href="../known_issues/README.html" />
     
     
-    <link rel="prev" href="../hardware_overview/README.html" />
+    <link rel="prev" href="../running_custom_sketches/README.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="crystalfontz/Userspace-Arduino" data-level="2" data-basepath=".." data-revision="1406712929646">
+    <div class="book" data-github="crystalfontz/Userspace-Arduino" data-level="4" data-basepath=".." data-revision="1406712929646">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -118,7 +118,7 @@
         
         
         <li>
-            <a href="https://github.com/crystalfontz/Userspace-Arduino/edit/master/getting_started/README.md" target="blank" class="contribute-link">Edit and Contribute</a>
+            <a href="https://github.com/crystalfontz/Userspace-Arduino/edit/master/debugging_an_application/README.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
 
@@ -351,7 +351,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 10%;min-width: 5%;"></div>
+        <div class="inner" style="width: 20%;min-width: 15%;"></div>
     </div>
     <div class="chapters">
     
@@ -361,9 +361,9 @@
     
         <a href="../getting_started/README.html" title="Getting Started" class="chapter done new-chapter" data-progress="2" style="left: 10%;"></a>
     
-        <a href="../running_custom_sketches/README.html" title="Running Custom Sketches" class="chapter  new-chapter" data-progress="3" style="left: 15%;"></a>
+        <a href="../running_custom_sketches/README.html" title="Running Custom Sketches" class="chapter done new-chapter" data-progress="3" style="left: 15%;"></a>
     
-        <a href="../debugging_an_application/README.html" title="Debugging an Application" class="chapter  new-chapter" data-progress="4" style="left: 20%;"></a>
+        <a href="../debugging_an_application/README.html" title="Debugging an Application" class="chapter done new-chapter" data-progress="4" style="left: 20%;"></a>
     
         <a href="../known_issues/README.html" title="Exceptions &amp; Known Issues" class="chapter  new-chapter" data-progress="5" style="left: 25%;"></a>
     
@@ -402,49 +402,45 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_29">
+                    <section class="normal" id="section-gitbook_28">
                     
-                        <h1 id="getting-started">Getting Started</h1>
-<p>While this version of Userspace Arduino doesn&#39;t support a GUI, it is very easy to get started using your own sketches on the CFA10036.</p>
-<h4 id="pre-requisites">Pre-requisites</h4>
-<p>Typically, any 32/64-bit linux machines (Windows and Mac are <strong>not</strong> supported yet) would do. However, for beginners we recommend using Ubuntu 12.04 (or 14.04) LTS to avoid compatibility issues which may crop up in other distros.</p>
-<p>If you don&#39;t have a linux machine, there are excellent guides available on the World Wide Web to dual-boot a linux distro with OS X or Windows.</p>
-<h4 id="dependencies">Dependencies</h4>
-<p>Once you&#39;ve got your linux machine running, you might want to run these commands to make sure that dependencies are installed:</p>
-<pre><code>sudo aptitude install g++ bison flex gettext ncurses-dev texinfo git
-</code></pre><p>Use a terminal (Ctrl+Alt+t on Ubuntu) to copy-paste the above command.</p>
-<p><strong>Note: You&#39;ve to use Ctrl+Shift+v to paste in a Ubuntu terminal.</strong></p>
-<h4 id="installing-the-toolchain">Installing the toolchain</h4>
-<ol>
-<li>Get the CodeSourcery toolchain for ARM by executing this in the terminal:<pre><code> wget -c https://sourcery.mentor.com/public/gnu_toolchain/arm-none-linux-gnueabi/arm-2013.05-24-arm-none-linux-gnueabi.bin
-</code></pre><em>Note: If you&#39;re <strong>not</strong> using a 64-bit system, skip to step 3</em></li>
-<li><p>Execute in a terminal (for 64-bit only):</p>
-<pre><code>sudo dpkg --add-architecture i386
-sudo apt-get update
-sudo apt-get install libgtk2.0-0:i386 libxtst6:i386 gtk2-engines-murrine:i386 \
-lib32stdc++6 libxt6:i386 libdbus-glib-1-2:i386 libasound2:i386
-</code></pre></li>
-<li><p>Now:</p>
-<pre><code> chmod +x arm-2013.05-24-arm-none-linux-gnueabi.bin
-./arm-2013.05-24-arm-none-linux-gnueabi.bin
-</code></pre></li>
-<li>When asked, choose a typical install.</li>
-<li>Logout and log back in. Congratulations! You&#39;re ready to start developing.</li>
-</ol>
-<h4 id="get-the-userspace-arduino-repository">Get the Userspace-Arduino repository</h4>
-<p>Open a terminal. Now might be a good time to start familiarizing with linux commands as you&#39;ll be doing most of your development here.</p>
-<p>Execute:</p>
-<pre><code>cd ~
-git clone https://github.com/crystalfontz/Userspace-Arduino.git
-cd Userspace-Arduino
-</code></pre><h4 id="run-an-example">Run an example</h4>
-<p>Connect the CFA10036 to your PC using a USB cable. Wait for it to boot-up.</p>
-<pre><code>cd arduino-makefile/examples
-cd BlinkUserspace
-make upload
-</code></pre><p>When prompted, use username as &quot;root&quot; and password as &quot;root&quot;.</p>
-<p>You should see the LED blink periodically.</p>
-
+                        <h1 id="debug-your-application">Debug your Application</h1>
+<p>Unlike microcontroller, Linux machine uses device drivers to access its pheripherals. Messages, having status of low level pheripheral along with time stamp of calling function, are displayed using debug configuration. Debug messages are infused in Userspace-Arduino low level APIs, and displayed on the terminal, only if the sketch is compiled as <strong>debug</strong>.</p>
+<p>It may helpful in solving logical, device driver or device tree errors by analyzing debug messages.</p>
+<p>To compile the sketch,</p>
+<pre><code>make clean
+make CFG=debug
+</code></pre><p>To compile and upload ELF file file directly,</p>
+<pre><code>make clean
+make CFG=debug upload
+</code></pre><p><code>NOTE: Use &#39;make clean&#39; before compilation.</code></p>
+<p>Here&#39;s the output of <strong>GPIO Demo/Demo/Example1</strong></p>
+<pre><code>Begin output log
+====================
+root@192.168.42.1&#39;s password:
+[00:02:37]: [pinInit] Exporting GPIOs...
+[00:02:37]: [pinInit] Exporting GPIO102
+[00:02:37]: [pinInit] Exporting GPIO103
+[00:02:37]: [pinInit] Exporting GPIO104
+[00:02:37]: [pinInit] Exporting GPIO105
+[00:02:37]: [pinInit] Exporting GPIO108
+[00:02:37]: [pinInit] Exporting GPIO109
+[00:02:37]: [pwmInit] Exporting PWM...
+[00:02:37]: [pwmInit] Exporting PWM 0
+[00:02:37]: [pwmInit] Exporting PWM 1
+[00:02:37]: [pwmInit] Exporting PWM 2
+[00:02:37]: [pwmInit] Exporting PWM 3
+[00:02:37]: [pwmInit] Exporting PWM 4
+[00:02:37]: [pwmInit] Exporting PWM 5
+[00:02:37]: [pinMode] configuring pin 13 as OUTPUT
+[00:02:38]: [digitalWrite] writing 1 to pin 13
+[00:02:39]: [digitalWrite] writing 0 to pin 13
+[00:02:40]: [digitalWrite] writing 1 to pin 13
+[00:02:41]: [digitalWrite] writing 0 to pin 13
+[00:02:42]: [digitalWrite] writing 1 to pin 13
+[00:02:43]: [digitalWrite] writing 0 to pin 13
+[00:02:44]: [digitalWrite] writing 1 to pin 13
+</code></pre>
                     
                     </section>
                 
@@ -453,10 +449,10 @@ make upload
         </div>
 
         
-        <a href="../hardware_overview/README.html" class="navigation navigation-prev " aria-label="Previous page: Hardware Overview"><i class="fa fa-angle-left"></i></a>
+        <a href="../running_custom_sketches/README.html" class="navigation navigation-prev " aria-label="Previous page: Running Custom Sketches"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../running_custom_sketches/README.html" class="navigation navigation-next " aria-label="Next page: Running Custom Sketches"><i class="fa fa-angle-right"></i></a>
+        <a href="../known_issues/README.html" class="navigation navigation-next " aria-label="Next page: Exceptions &amp; Known Issues"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
