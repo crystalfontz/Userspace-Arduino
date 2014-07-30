@@ -1,6 +1,6 @@
 # GPIO Demo
 
-**Example**
+**Example 1**
 
 Blink LED connected to Arduino Uno pin no 11
 
@@ -22,7 +22,7 @@ void loop()
 
 ```
 
-**Example**
+**Example 2**
 
 ```cpp
 

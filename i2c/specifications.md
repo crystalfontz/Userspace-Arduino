@@ -8,4 +8,3 @@ The I2C0 lines in Userspace Arduino are shared with the OLED on CFA10036. That m
 | :--: | :--: | :--: |  :--: |
 | SDA |  A4  |  H5  | P3.01 |
 | SCL |  A5  |  G5  | P3.00 |
-
