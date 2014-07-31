@@ -61,10 +61,20 @@ void pinMode(uint8_t pin, uint8_t mode)
 			trace_debug("[pinMode] configuring pin %d as INPUT \n", pin);
 			#endif
 		}
-		else {
+		else if (mode == OUTPUT ) {
 			gpio_setdirection(pin2gpiohandle(pin), "out");
 			#ifdef DEBUG
 			trace_debug("[pinMode] configuring pin %d as OUTPUT \n", pin);
+			#endif
+		}
+		else if (mode == INPUT_PULLUP) {
+		    #ifdef DEBUG
+			trace_debug("[pinMode] can't set pin %d as INPUT_PULLUP \n", pin);
+			#endif
+		}
+		else {
+		    #ifdef DEBUG
+			trace_debug("[pinMode] Invalid pinMode %d for pin %d\n", mode, pin);
 			#endif
 		}
 	}
