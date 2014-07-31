@@ -5,7 +5,7 @@
 //  Push Button Connected to P8_19, Digital Pin 7
 
 int pushButton = 7;
-int sliderPot  = 24;
+int sliderPot  = A6;
 int ledPin = 3;
 void setup() {               
   // initialise digital pins as inputs
