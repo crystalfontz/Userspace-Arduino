@@ -1,6 +1,6 @@
 # I2C Specifications
 
-The I2C0 lines in Userspace Arduino are shared with the OLED on CFA10036. That means that any I2C devices with address xx wont work when connected to the lines.
+The I2C0 lines in Userspace Arduino are shared with the OLED on CFA10036. That means that any I2C devices with address 50 wont work when connected to the lines.
 
 ### Pinout Table
 
