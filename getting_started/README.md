@@ -46,7 +46,7 @@ Execute:
 
 ```
 cd ~
-git clone https://github.com/crystalfontz/Userspace-Arduino.git
+git clone -b master --single-branch https://github.com/crystalfontz/Userspace-Arduino.git
 cd Userspace-Arduino
 ```
 
