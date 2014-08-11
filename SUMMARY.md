@@ -22,4 +22,5 @@
 * [Serial](serial/README.md)
    * [Specifications](serial/specifications.md)
 * [Analog](analog/README.md)
+   * [Specification](analog/specification.md)
 
