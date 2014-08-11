@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Serial | Userspace-Arduino for CFA10036</title>
+        <title>Specifications | Userspace-Arduino for CFA10036</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -19,10 +19,10 @@
     <meta name="author" content="crystalfontz">
     
     
-    <link rel="next" href="../serial/specifications.html" />
+    <link rel="next" href="../analog/README.html" />
     
     
-    <link rel="prev" href="../i2c/specifications.html" />
+    <link rel="prev" href="../serial/README.html" />
     
 
         
@@ -34,7 +34,7 @@
 
 
         
-    <div class="book" data-github="crystalfontz/Userspace-Arduino" data-level="10" data-basepath=".." data-revision="1407774608720">
+    <div class="book" data-github="crystalfontz/Userspace-Arduino" data-level="10.1" data-basepath=".." data-revision="1407774863590">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -118,7 +118,7 @@
         
         
         <li>
-            <a href="https://github.com/crystalfontz/Userspace-Arduino/edit/master/serial/README.md" target="blank" class="contribute-link">Edit and Contribute</a>
+            <a href="https://github.com/crystalfontz/Userspace-Arduino/edit/master/serial/specifications.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
 
@@ -390,7 +390,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 86.95652173913044%;min-width: 82.6086956521739%;"></div>
+        <div class="inner" style="width: 91.30434782608695%;min-width: 86.95652173913044%;"></div>
     </div>
     <div class="chapters">
     
@@ -436,7 +436,7 @@
     
         <a href="../serial/README.html" title="Serial" class="chapter done " data-progress="10" style="left: 86.95652173913044%;"></a>
     
-        <a href="../serial/specifications.html" title="Specifications" class="chapter  " data-progress="10.1" style="left: 91.30434782608695%;"></a>
+        <a href="../serial/specifications.html" title="Specifications" class="chapter done " data-progress="10.1" style="left: 91.30434782608695%;"></a>
     
         <a href="../analog/README.html" title="Analog" class="chapter  " data-progress="11" style="left: 95.65217391304348%;"></a>
     
@@ -447,11 +447,34 @@
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_1234">
+                    <section class="normal" id="section-gitbook_1262">
                     
-                        <h1 id="serial">Serial</h1>
-<p>Serial (Also famous as UART) communication is very simple protocol. It has only two pins: TX and RX (There are a few more, but discussion of which is not relevent here).</p>
-<p>There are two serial ports used in Userspace-Arduino. One of which is serial over USB and other is ttyAPP3 serial port. Unlike Arduino, you don&#39;t have to print values of variables in serial port. You can use <code>printf()</code> function inside sketch and print them on the remote terminal (accessed by SSH).</p>
+                        <h1 id="serial-specifications">Serial Specifications</h1>
+<h3 id="pinout-table">Pinout Table</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Serial Pin</th>
+<th style="text-align:center">Arduino Uno Pin no</th>
+<th style="text-align:center">i.MX28 Ball no</th>
+<th style="text-align:center">CFA10037 Pin no</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">TX</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">C4</td>
+<td style="text-align:center">P2.19</td>
+</tr>
+<tr>
+<td style="text-align:center">RX</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">B3</td>
+<td style="text-align:center">P2.18</td>
+</tr>
+</tbody>
+</table>
 
                     
                     </section>
@@ -461,10 +484,10 @@
         </div>
 
         
-        <a href="../i2c/specifications.html" class="navigation navigation-prev " aria-label="Previous page: Specifications"><i class="fa fa-angle-left"></i></a>
+        <a href="../serial/README.html" class="navigation navigation-prev " aria-label="Previous page: Serial"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../serial/specifications.html" class="navigation navigation-next " aria-label="Next page: Specifications"><i class="fa fa-angle-right"></i></a>
+        <a href="../analog/README.html" class="navigation navigation-next " aria-label="Next page: Analog"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
