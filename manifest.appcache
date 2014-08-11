@@ -1,15 +1,17 @@
 CACHE MANIFEST
-# Revision 1406712929647
+# Revision 1407774863591
 
 CACHE:
-hardware_overview/README.html
-debugging_an_application/README.html
-getting_started/README.html
 gpio/README.html
 gpio/api_and_additional_features.html
 gpio/demo.html
 gpio/specifications.html
+analog/README.html
+analog/specification.html
+debugging_an_application/README.html
+getting_started/README.html
 index.html
+hardware_overview/README.html
 i2c/README.html
 i2c/specifications.html
 known_issues/README.html
@@ -19,6 +21,7 @@ pwm/demo.html
 pwm/specifications.html
 running_custom_sketches/README.html
 serial/README.html
+serial/specifications.html
 spi/README.html
 spi/api_and_additional_featuers.html
 spi/demo.html
