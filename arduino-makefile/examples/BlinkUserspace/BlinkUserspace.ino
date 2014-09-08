@@ -8,13 +8,14 @@
 void setup() {                
   // initialize the digital pin as an output.
   // Pin 15 has an LED connected on Beaglebone Black:
-  digitalWrite(15, 1);
+  pinMode(2, OUTPUT);
+  digitalWrite(2, 1);
 }
 
 void loop() {
-  digitalWrite(15, 1);   // set the LED on
+  digitalWrite(2, 1);   // set the LED on
   delay(1000);              // wait for a second
-  digitalWrite(15, 0);    // set the LED off
+  digitalWrite(2, 0);    // set the LED off
   delay(1000);              // wait for a second
 }
 
